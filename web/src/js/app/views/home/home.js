@@ -19,7 +19,7 @@ define(function (require) {
 				addCustomer: function () {
 					var e = this.event;
 					e.original.preventDefault();
-					kudu.route({ctrl: customer});
+					kudu.go({ctrl: customer});
 				}
 			});
 			return view;

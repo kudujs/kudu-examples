@@ -19,7 +19,7 @@ define(function (require) {
 	/*
 	 $("#menu-home").on('click', function (e) {
 	 e.preventDefault();
-	 kudu.route({ctrl: home});
+	 kudu.go({ctrl: home});
 	 });*/
 
 });

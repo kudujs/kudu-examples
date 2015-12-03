@@ -20,7 +20,7 @@ define(function (require) {
 					var e = this.event;
 					e.original.preventDefault();
 					require(["../home/home"], function (home) {
-						kudu.route({ctrl: home});
+						kudu.go({ctrl: home});
 					});
 				}
 			});

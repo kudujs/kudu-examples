@@ -11,7 +11,7 @@
 ({
     appDir: "../web/src",
    baseUrl: "js/lib",
-    dir: "../build/web", // output folder of build
+    dir: "../dist", // output folder of build
     //optimize: 'uglify',
     optimize: 'none',
 	fileExclusionRegExp: /^node_modules$|^bower_components$/,

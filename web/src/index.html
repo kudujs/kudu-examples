@@ -1,11 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 07 Oct 2015, 2:34:09 PM
-    Author     : bob
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
     <head>

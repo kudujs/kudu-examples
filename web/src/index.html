@@ -6,6 +6,8 @@
         <link rel="stylesheet" type="text/css" href="css/site.css" />
     </head>
     <body>
+        
+        <div id="menu"></div>
        
         <div id="container"></div>
     </body>

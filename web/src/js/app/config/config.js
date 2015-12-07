@@ -25,9 +25,7 @@ requirejs.config({
 	},
 	
 	"shim": {
-		//'bootstrap': {
-		//deps: ['jquery']
-		//},
+		  "bootstrap" : { "deps" :['jquery'] }
 		/*
 		 'select2': {
 		 deps: ['jquery'],

@@ -1,20 +1,8 @@
 @import url("bootstrap.css");
 @import url("font-awesome.css");
-@import url("toastr.css");
-@import url("fullcalendar.css");
-@import url("validationEngine.jquery.css"); 
-@import url("select2.css");
-@import url("select2-bootstrap.css");
-@import url("home.css");
-@import url("enjoyhint.css");
-@import url("cropper/cropper.css");
+@import url("side-panel.css");
+@import url("prism.css");
 
-@import url("dropzone/basic.css");
-@import url("dropzone/dropzone.css");
-@import url("wysiwyg.css");
-@import url("todo.css");
-@import url("jquery.reject.css");
-@import url("theme/default.css");
 
 ul,li {
     margin: 0;
@@ -43,6 +31,11 @@ article, aside, details, figcaption, figure,
 p {
     font-weight: normal;
 }
+
+html, body {
+  height: 100%;
+}
+
 body {
 
     line-height: 1.5; 
@@ -52,8 +45,8 @@ body {
     font-family: "Segoe UI SemiLight","Segoe UI","wf_SegoeUILight","wf_SegoeUI","Segoe UI Light","Segoe WP Light","Segoe","Segoe WP","Tahoma","Verdana","Arial","sans-serif";
     /*font-family: "Verdana","Arial","sans-serif";*/
     /*background-color: #F4ED7C;*/
-    background-color: #ECECEF;
-    color: #000;
+    background-color: #424f5d;
+    color: #eee;
 
 }
 /*
@@ -208,28 +201,6 @@ pre.programlisting {
     margin: 20px 0px;
 }
 
-code.filename, code.filename span.pln {
-}
-
-code.varname, code.varname span.pln, code.varname span.atv, code.varname span.atn {
-    color: blue;
-    font-weight: normal;
-}
-
-span.symbol, span.symbol span.pln, span.symbol span.atn, span.symbol span.tag,
-span.symbol span.lit, span.symbol span.atv {
-    color: #E5053A;
-    font-weight: normal;
-}
-
-span.command, span.command span.pln {
-    color: #7F0055;
-}
-
-span.token, span.token span.pln, span.token span.atv {
-    color: maroon;
-}
-
 #features:after {
     clear: both;
     content: ".";
@@ -293,7 +264,7 @@ a:hover {
     text-decoration: underline;
 }
 a:visited {
-    color: #E5053A;
+    color: #fff;
 }
 
 .download-content {
@@ -490,7 +461,6 @@ a:visited {
     top: 2px;
     left:-15px;
     content: "\f067";
-    //content: "\f101";
 }
 .toc ul ul a:before {
     content: "\f068";
@@ -606,14 +576,14 @@ button.btn {
     transform: translate(-50%, 0);
     background: #FFED38;
     color: #000;
-    z-index: 10000; // Ensure loader is above easyhint
+    z-index: 10000; /* Ensure loader is above easyhint*/
 }
 
 .calendarSelected {
-    //background-color:  red;
+    /*background-color:  red;*/
     /*background-color: #428BCA;*/
     background-color: #D9EDF7;
-    //opacity: 0.3;
+    /*opacity: 0.3;*/
 }
 
 .fc-cell-overlay {
@@ -759,9 +729,9 @@ margin-left: 10px;
 
 h1 {
     font-size: 50px;
-    letter-spacing: -3px;
+    letter-spacing: normal;
     line-height: 100%;
-    color: #444;
+    color: #eee;
     margin-top: 0px;
     padding-top: 10px;
     margin-bottom: 30px;
@@ -876,3 +846,4 @@ h1 {
     float: right;
     font-size: 1.3em;
 }
+

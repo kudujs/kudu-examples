@@ -3,6 +3,9 @@ define(function (require) {
 	var Ractive = require("ractive");
 	var home = require("app/views/home/home");
 	var customer = require("app/views/customer/customer");
+	var nav = require("app/views/nav/nav");
+	var navTarget = require("app/views/nav/nav-target");
+	var navTargetParams = require("app/views/nav/nav-target-params");
 	var notFound = require("app/views/notfound/notFound");
 
 	function routes() {
@@ -14,6 +17,9 @@ define(function (require) {
 		var routes = {
 			home: homeRoute,
 			customer: {path: '/customer', ctrl: customer},
+			nav: {path: '/nav', ctrl: nav},
+			navTarget: {path: '/nav-target', ctrl: navTarget},
+			navTargetParams: {path: '/nav-target-params/:id?name', ctrl: navTargetParams},
 			notFound: {path: '*', ctrl: notFound}
 		};
 

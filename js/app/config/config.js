@@ -17,17 +17,18 @@ requirejs.config({
 				//'ractive': 'http://cdn.ractivejs.org/edge/ractive',
 				//@,'jquery': 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min'
 	},
-
 	map: {
 		'*': {
 			'kudu': 'kudulib/src/kudu'
 		}
 	},
-	
 	"shim": {
-		//'bootstrap': {
-		//deps: ['jquery']
-		//},
+		"bootstrap": {
+			"deps": ['jquery']
+		},
+		"prism": {
+			"exports": "Prism"
+		}
 		/*
 		 'select2': {
 		 deps: ['jquery'],

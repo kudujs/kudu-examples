@@ -1,8 +1,9 @@
 define(function (require) {
 
 	var navTemplate = require("rvc!./menu");
-	var routes = require("app/config/routes");
+	var sidePanel = require("app/views/panel/sidePanel");
 	var kudu = require("kudu");
+	var sidePanelObj;
 
 	var $ = require("jquery");
 
@@ -11,26 +12,36 @@ define(function (require) {
 		var that = {};
 
 		that.init = function (options) {
+			sidePanelObj = sidePanel({el: '#side-panel',
+				data: {title: "Title goes here", content: "content"
+				}});
 
 			new navTemplate({
 				el: options.target,
-				goto: function (routeName) {
-					// Retrieve the route from routes
-					var route = routes[routeName];
-
-					// Navigate to the route specified
-					kudu.go({ctrl: route.ctrl});
-
+				showJavascript: function (routeName) {
+					sidePanelObj.show({
+						ext:"js"
+						
+					});
+					// Cancel the click event by returning false, otherwise the link function would execute ie. follow the link href
+					return false;
+				},
+				
+				showHtml: function (routeName) {
+					sidePanelObj.show({
+						ext:"html"
+						
+					});
 					// Cancel the click event by returning false, otherwise the link function would execute ie. follow the link href
 					return false;
 				}
 			});
-			
+
 			// Add highlight to menu
 			$(".nav a").on("click", function () {
-				
+
 				// If we click on dropdown do not change to active
-				var $el = $(this);				
+				var $el = $(this);
 				if ($el.parent().hasClass("dropdown")) {
 					return;
 				}

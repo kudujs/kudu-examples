@@ -24,7 +24,7 @@ define(function (require) {
 					var route = routes[routeName];
 
 					// Navigate to the route specified
-					kudu.go({ctrl: route.ctrl, routeParams: params, force: true, updateUrl: false});
+					kudu.go({ctrl: route.ctrl, routeParams: params});
 
 					// Cancel the click event by returning false, otherwise the link function would execute ie. follow the link href
 					return false;

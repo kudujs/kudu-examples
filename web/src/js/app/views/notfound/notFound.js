@@ -1,6 +1,6 @@
 define(function (require) {
 	var $ = require("jquery");
-	var template = require("rvc!./notFound");
+	var template = require("rvc!./not-found");
 
 	function notFound() {
 		

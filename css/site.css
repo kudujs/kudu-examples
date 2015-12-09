@@ -251,10 +251,10 @@ a {
 }
 
 a:active {
-    color: #E5053A;
+    color: #fff;
 }
 a:hover {
-    color: #E5053A;
+    color: #fff;
     text-decoration: underline;
 }
 a:visited {

@@ -1,6 +1,7 @@
 define(function (require) {
 	var $ = require("jquery");
 	var kudu = require("kudu");
+	var prism = require("prism");
 	var template = require("rvc!./nav-target-params");
 
 	function navTargetParams() {
@@ -13,22 +14,20 @@ define(function (require) {
 				routes = arg;
 			});
 
-			var view = createView();
+			var view = createView(options.routeParams, options.args);
 			return view;
 		};
+		
+		that.onRender = function (options) {
+			prism.highlightAll();			
+		};
 
-		function createView() {
+		function createView(params, args) {
 
 			var view = new template({
-				goto: function (routeName) {
-					// Retrieve the route from routes
-					var route = routes[routeName];
-
-					// Navigate to the route specified
-					kudu.go({ctrl: route.ctrl});
-
-					// Cancel the click event by returning false, otherwise the link function would execute ie. follow the link href
-					return false;
+				data: {
+					args: args,
+					params: params
 				}
 			});
 			return view;

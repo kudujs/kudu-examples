@@ -20,7 +20,7 @@ define(function (require) {
 
 		// Public 
 		panel.show = function (options) {
-			options = options || {}; 
+			options = options || {};
 			var path = options.path || getUrlPath();
 			var ext = options.ext || "";
 			panel.set("visible", true);
@@ -34,11 +34,22 @@ define(function (require) {
 
 		return panel;
 	}
-	
+
 	function getUrlPath() {
 		var route = kudu.getActiveRoute();
 		var id = route.ctrl.id;
 		return "js/" + id;
+	}
+
+	function camelToDash(str) {
+		return str.replace(/\W+/g, '-')
+				.replace(/([a-z\d])([A-Z])/g, '$1-$2');
+	}
+
+	function dashToCamel(str) {
+		return str.replace(/\W+(.)/g, function (x, chr) {
+			return chr.toUpperCase();
+		})
 	}
 
 // Private 

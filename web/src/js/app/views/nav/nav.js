@@ -19,12 +19,12 @@ define(function (require) {
 			});
 
 			var view = new template({
-				goto: function (routeName, params) {
+				goto: function (routeName, params, args) {
 					// Retrieve the route from routes
 					var route = routes[routeName];
 
 					// Navigate to the route specified
-					kudu.go({ctrl: route.ctrl, routeParams: params});
+					kudu.go({ctrl: route.ctrl, routeParams: params, args: args});
 
 					// Cancel the click event by returning false, otherwise the link function would execute ie. follow the link href
 					return false;

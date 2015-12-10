@@ -80,11 +80,6 @@ h3{
     padding-bottom: 51px
 }
 
-.header-wrapper {
-    background-color: #E5053A;
-    width: 100%;
-}
-
 .title-wrapper {
     background-color: #333;
     color: #ddd;
@@ -245,22 +240,21 @@ pre.programlisting {
     list-style-type: none;
 }
 .feature-list .icon {
-    /*color: #E5053A;*/
     color: #E5053A;
     font-size: 15px;
     margin-right: 3px;
 }
 
 a {
-    color: #E5053A;
+    color: #fff;
     text-decoration: none;
 }
 
 a:active {
-    color: #E5053A;
+    color: #fff;
 }
 a:hover {
-    color: #E5053A;
+    color: #fff;
     text-decoration: underline;
 }
 a:visited {

@@ -5,15 +5,20 @@
 Primary style
 
 -------------------------------- */
-*, *::after, *::before {
+.cd-panel::after, .cd-panel::before, .cd-panel-close, .cd-panel-close::after, .cd-panel-close::before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-*::after, *::before {
+.cd-panel-close::after, .cd-panel-close::before {
   content: '';
 }
+
+.cd-panel::after, .cd-panel::before {
+  content: '';
+}
+
 
 /*
 body {

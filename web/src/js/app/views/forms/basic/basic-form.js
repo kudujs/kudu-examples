@@ -15,9 +15,14 @@ define(function (require) {
 		function createView() {
 
 			var view = new template({
+				
 				submit: function () {
 					$('.bs-callout-info').removeClass('hidden');
 					return false;
+				},
+				
+				reset: function () {
+					$('.bs-callout-info').addClass('hidden');
 				}
 			});
 			return view;

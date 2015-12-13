@@ -61,6 +61,10 @@ define(function (require) {
 				submit: function () {
 					var valid = parsley.validate();
 					return false;
+				},
+				reset: function () {
+					$('.bs-callout-info').addClass('hidden');
+					$('.bs-callout-warning').addClass('hidden');
 				}
 			});
 			return view;

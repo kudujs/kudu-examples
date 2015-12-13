@@ -12,6 +12,7 @@ define(function (require) {
 		var that = {};
 
 		that.init = function (options) {
+			
 			sidePanelObj = sidePanel({el: '#side-panel',
 				data: {title: "Title goes here", content: "content"
 				}});
@@ -39,9 +40,16 @@ define(function (require) {
 
 			// Add highlight to menu
 			$(".nav a").on("click", function () {
+				var $el = $(this);
+				
+				var navId = $el.attr("id");
+				
+				// Don't highlight showJavascript and showHtml menu items since they trigger a slide panel, not an actual new view
+				if (navId === "showJs" || navId === "showHtml") {
+					return;
+				}
 
 				// If we click on dropdown do not change to active
-				var $el = $(this);
 				if ($el.parent().hasClass("dropdown")) {
 					return;
 				}

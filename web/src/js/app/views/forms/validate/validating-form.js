@@ -1,14 +1,14 @@
 define(function (require) {
 	var $ = require("jquery");
 	var kudu = require("kudu");
-	var kudu = require("parsley");
+	var parsley = require("parsley");
 	var template = require("rvc!./validating-form");
 
 	function ValidatingForm() {
 
 		var that = {};
 
-		var formValidationFeedback = false;
+		//var formValidationFeedback = false;
 
 		var parsley;
 
@@ -18,42 +18,54 @@ define(function (require) {
 		};
 
 		that.onRender = function (options) {
-			parsley = $('form').parsley();
-			parsley.on('form:validated', function (field) {
-				formValidationFeedback = true;
-				showFormValidationFeedback();
+			parsley = $('form').parsley({
+				/*
+			}
+				successClass: "has-success",
+				errorClass: "has-error",
+				classHandler: function (field) {
+					return field.$element.closest(".form-group");
+				},
+				errorsWrapper: "<span class='help-block parsley-errors-list'></span>",
+				errorTemplate: "<span></span>"
+*/
+			});
+			parsley.on('form:validated', function (form) {
+
+				//formValidationFeedback = true;
+				//setFieldsInvalid(form);
+				showFormValidationFeedback(form);
 			});
 
 			parsley.on('field:validated', function (field) {
-				console.log("field:validated triggered");
+				console.log("VALID", field.isValid());
 
-				if (!formValidationFeedback) {
-					return;
-				}
-				showFormValidationFeedback();
+//				if (!formValidationFeedback) {
+//					return;
+//				}
+				showFormValidationFeedback(field.parent);
+			});
 
-				console.log("<MO");
-				setTimeout(function () {
-
-
-				});
-
-			})
-
-					.on('form:success', function (form) {
-						var value = $("#exampleInputEmail1").val();
-						return false; // Don't submit form for this demo
-					});
+			/*
+			 .on('form:submit', function (form) {
+			 return false; // Don't submit form for this demo
+			 });*/
 		};
 
-		function showFormValidationFeedback() {
-			setTimeout(function() {
-			var ok = $('.parsley-error').length === 0;
-			console.log("show message? " + ok)
+		function setFieldsInvalid(form) {
+
+			for (var n = 0; n < form.fields.length; n++) {
+				//var fieldui = form.fields[n]._ui;
+				var field = form.fields[n];
+				ParsleyUI.manageFailingFieldTrigger(field);
+
+			}
+		}
+
+		function showFormValidationFeedback(form) {
+			var ok = form.isValid();
 			$('.bs-callout-info').toggleClass('hidden', !ok);
 			$('.bs-callout-warning').toggleClass('hidden', ok);
-				
-			})
 		}
 
 		function createView() {
@@ -61,8 +73,9 @@ define(function (require) {
 			var view = new template({
 				submit: function () {
 					this.event.original.preventDefault();
-					var res = parsley.validate();
-					var ok = $('.parsley-error').length === 0;
+					var valid = parsley.validate();
+					console.log("Form VALID", valid)
+					//var ok = $('.parsley-error').length === 0;
 					//console.log("OK ", res, ok);
 					//$('.bs-callout-info').toggleClass('hidden', !ok);
 					//$('.bs-callout-warning').toggleClass('hidden', ok);

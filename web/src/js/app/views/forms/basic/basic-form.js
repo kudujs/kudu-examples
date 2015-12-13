@@ -15,10 +15,9 @@ define(function (require) {
 		function createView() {
 
 			var view = new template({
-				addCustomer: function () {
-					var e = this.event;
-					e.original.preventDefault();
-					kudu.go({ctrl: customer});
+				submit: function () {
+					$('.bs-callout-info').removeClass('hidden');
+					return false;
 				}
 			});
 			return view;

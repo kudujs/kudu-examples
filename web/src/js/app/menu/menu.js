@@ -1,7 +1,7 @@
 define(function (require) {
 
 	var navTemplate = require("rvc!./menu");
-	var sidePanel = require("app/views/panel/sidePanel");
+	var sidePanel = require("app/panel/side-panel/sidePanel");
 	var kudu = require("kudu");
 	var sidePanelObj;
 
@@ -12,7 +12,7 @@ define(function (require) {
 		var that = {};
 
 		that.init = function (options) {
-			
+
 			sidePanelObj = sidePanel({el: '#side-panel',
 				data: {title: "Title goes here", content: "content"
 				}});
@@ -21,17 +21,16 @@ define(function (require) {
 				el: options.target,
 				showJavascript: function (routeName) {
 					sidePanelObj.show({
-						ext:"js"
-						
+						ext: "js"
+
 					});
 					// Cancel the click event by returning false, otherwise the link function would execute ie. follow the link href
 					return false;
 				},
-				
 				showHtml: function (routeName) {
 					sidePanelObj.show({
-						ext:"html"
-						
+						ext: "html"
+
 					});
 					// Cancel the click event by returning false, otherwise the link function would execute ie. follow the link href
 					return false;
@@ -39,11 +38,15 @@ define(function (require) {
 			});
 
 			// Add highlight to menu
+			highlightActiveMenu();
+		};
+
+		function highlightActiveMenu() {
 			$(".nav a").on("click", function () {
 				var $el = $(this);
-				
+
 				var navId = $el.attr("id");
-				
+
 				// Don't highlight showJavascript and showHtml menu items since they trigger a slide panel, not an actual new view
 				if (navId === "showJs" || navId === "showHtml") {
 					return;
@@ -57,7 +60,7 @@ define(function (require) {
 				$(this).parent().addClass("active");
 				$('.active').closest('li.dropdown').addClass('active');
 			});
-		};
+		}
 
 		return that;
 	}

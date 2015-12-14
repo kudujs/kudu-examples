@@ -1,6 +1,5 @@
 define(function (require) {
 	var $ = require("jquery");
-	var kudu = require("kudu");
 	var template = require("rvc!./basic-form");
 
 	function basicForm() {

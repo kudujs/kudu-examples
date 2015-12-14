@@ -2,7 +2,6 @@ define(function (require) {
 
 	var menuTemplate = require("rvc!./menu");
 	var sidePanel = require("app/panel/side-panel/sidePanel");
-	var kudu = require("kudu");
 	var sidePanelObj;
 
 	var $ = require("jquery");

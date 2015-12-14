@@ -29,11 +29,22 @@ requirejs.config({
 		"prism": {
 			"exports": "Prism"
 		}
+//		"parsley": {
+//			"deps": ["jquery"],
+//			"exports": "parsley"
+//		}
 		/*
 		 'select2': {
 		 deps: ['jquery'],
 		 exports: 'Select2'
 		 },*/
+//
+//		, ripples: {
+//			deps: ["jquery"]
+//		},
+//		material: {
+//			deps: ["bootstrap", 'ripples']
+//		}
 	}
 });
 

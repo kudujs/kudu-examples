@@ -1,7 +1,6 @@
 define(function (require) {
 	var $ = require("jquery");
 	var kudu = require("kudu");
-	var customer = require("../customer/customer");
 	var template = require("rvc!./home");
 
 	function home() {
@@ -16,11 +15,6 @@ define(function (require) {
 		function createView() {
 
 			var view = new template({
-				addCustomer: function () {
-					var e = this.event;
-					e.original.preventDefault();
-					kudu.go({ctrl: customer});
-				}
 			});
 			return view;
 		}

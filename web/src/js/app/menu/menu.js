@@ -1,6 +1,6 @@
 define(function (require) {
 
-	var navTemplate = require("rvc!./menu");
+	var menuTemplate = require("rvc!./menu");
 	var sidePanel = require("app/panel/side-panel/sidePanel");
 	var kudu = require("kudu");
 	var sidePanelObj;
@@ -13,12 +13,11 @@ define(function (require) {
 
 		that.init = function (options) {
 
-			sidePanelObj = sidePanel({el: '#side-panel',
-				data: {title: "Title goes here", content: "content"
-				}});
-
-			new navTemplate({
+			// Create menu view instance
+			new menuTemplate({
+				
 				el: options.target,
+				
 				showJavascript: function (routeName) {
 					sidePanelObj.show({
 						ext: "js"
@@ -27,6 +26,7 @@ define(function (require) {
 					// Cancel the click event by returning false, otherwise the link function would execute ie. follow the link href
 					return false;
 				},
+
 				showHtml: function (routeName) {
 					sidePanelObj.show({
 						ext: "html"
@@ -35,6 +35,11 @@ define(function (require) {
 					// Cancel the click event by returning false, otherwise the link function would execute ie. follow the link href
 					return false;
 				}
+			});
+
+			// Create sidePanel instance
+			sidePanelObj = sidePanel({
+				el: '#side-panel'
 			});
 
 			// Add highlight to menu

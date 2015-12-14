@@ -29,7 +29,7 @@ define(function (require) {
 			panel.set("code", path + "." + ext);
 			panel.set("title", path + "." + ext);
 			prism.fileHighlight();
-			prism.highlightAll();
+			prism.highlightElement($('.cd-panel-content')[0]);
 		};
 
 		return panel;

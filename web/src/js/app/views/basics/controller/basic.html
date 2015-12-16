@@ -9,13 +9,13 @@
 
     <div class="row">
         <div class="col-md-12">
-            <p>Views in Kudu are implemented as AMD modules that must return a <em>Controller</em></p>
+            <p>Views in Kudu are implemented as AMD modules that must return a <span class="fun">Controller</span></p>
 
-            <p>Controllers are plain Javascript objects but must implement an <em>onInit</em> method that returns a 
+            <p><span class="fun">Controllers</span> are plain Javascript objects but must implement an <span class="met">onInit</span> method that returns a 
                 <a href='http://ractivejs.org' target='_blank' class='link'>Ractive</a>
-                instance. <em>Ractive</em> is a library that binds HTML templates to data objects.
+                instance. <span class="ln">Ractive</span> is a library that binds HTML templates to data objects.
             </p>
-            <p>Controllers have an associated HTML template, which are <a href="https://mustache.github.io/" class="link">mustache</a> based.
+            <p>Controllers have an associated HTML template, which are <a href="https://mustache.github.io/" target="_blank" class="link">mustache</a> based.
                 Mustache is a logicless templating engine, and Ractive has great support for binding mustaches to data variables.
             </p>
             <p>

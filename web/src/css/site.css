@@ -390,6 +390,9 @@ a:visited {
 .met {
     color: #e6db74;
 }
+.fun {
+    color: #e6db74;
+}
 .highlight {
     color: #009DDB;
 }
@@ -870,6 +873,11 @@ h1 {
     background-color: #e7e7e7;
         color: #666;
 }
-.link {
+.link, a.link, a.link:active {
     text-decoration: underline;
+    color: #66d9ef;
+}
+
+a.link:hover {
+    color: #fff;
 }

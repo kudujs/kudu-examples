@@ -1,8 +1,7 @@
 define(function (require) {
 	var $ = require("jquery");
 	var kudu = require("kudu");
-	var prism = require("prism");
-	var template = require("rvc!./nav-target-params");
+		var template = require("rvc!./nav-target-params");
 
 	function navTargetParams() {
 
@@ -18,10 +17,6 @@ define(function (require) {
 			return view;
 		};
 		
-		that.onRender = function (options) {
-			prism.highlightAll();			
-		};
-
 		function createView(params, args) {
 
 			var view = new template({

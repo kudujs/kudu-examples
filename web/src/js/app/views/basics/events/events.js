@@ -1,10 +1,9 @@
 define(function (require) {
 	var $ = require("jquery");
 	var kudu = require("kudu");
-	var basic = require("../basics/controller/basic");
-	var template = require("rvc!./home");
+	var template = require("rvc!./events");
 
-	function home() {
+	function events() {
 
 		var that = {};
 
@@ -15,14 +14,12 @@ define(function (require) {
 
 		function createView() {
 
-			var view = new template({});
-			view.start = function() {
-				kudu.go({ctrl: basic});
-			};
+			var view = new template({
+			});
 			return view;
 		}
 
 		return that;
 	}
-	return home;
+	return events;
 });

@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+            <h1 style="padding-top:30px; padding-bottom:0px;">Global <span class="highlightLetter">Events</span></h1>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            Here we show how to subscribe to global Kudu events.
+            <pre><code  class="line-numbers language-js">var kudu = require("kudu");
+var $ = require("jquery");
+
+$(kudu).on("viewFail", function(options) {
+    alert("Sorry, an error occurred: ", options.error[0]);
+});
+
+$(kudu).on("viewRender", function(options) {
+    console.log("view has been rendered");
+});
+</code></pre>
+
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12 ">
+
+            <p style="margin-top: 20px">
+                <strong>Note:</strong> use the buttons below to subscribe and unsubscribe to Kudu global events. Once subscribed, open the browser console and click
+                the <em class='btn-success'>Reload view</em> button below, to see the order of events triggered.
+            </p>
+            <p style="margin-top: 1 0px">
+
+                <button class="btn btn-primary" on-click="addListeners()">Subscribe to global events</button>
+                <button class="btn btn-success" on-click="reloadView()">Reload view</button>
+                <button class="btn btn-danger pull-right" on-click="removeListeners()">Unsubscribe from global events</button>
+        </div>
+    </div>
+</div>

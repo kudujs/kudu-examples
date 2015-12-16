@@ -381,8 +381,20 @@ a:visited {
 .version {
     font-size: small;
 }
+.ln {
+    color: #66d9ef;
+}
+.var {
+    color: #a6e22e;
+}
+.met {
+    color: #e6db74;
+}
 .highlight {
-    color: #E5053A;
+    color: #009DDB;
+}
+.highlightLetter {
+    color: #009DDB;
 }
 .off-color {
     color: #888;
@@ -857,4 +869,7 @@ h1 {
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
     background-color: #e7e7e7;
         color: #666;
+}
+.link {
+    text-decoration: underline;
 }

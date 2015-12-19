@@ -1,7 +1,9 @@
 define(function (require) {
-
+	
+	var kudu = require("kudu");
 	var menuTemplate = require("rvc!./menu");
 	var sidePanel = require("app/panel/side-panel/sidePanel");
+	var ctrlEvents = require("app/views/lifecycle/ctrl-events/ctrl-events");
 	var sidePanelObj;
 
 	var $ = require("jquery");
@@ -16,6 +18,11 @@ define(function (require) {
 			new menuTemplate({
 				
 				el: options.target,
+				
+				gotoCtrlEvents: function() {
+					kudu.go({ctrl: ctrlEvents});
+					this.event.original.preventDefault();
+				},
 				
 				showJavascript: function (routeName) {
 					sidePanelObj.show({

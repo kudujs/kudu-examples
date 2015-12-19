@@ -12,6 +12,16 @@ define(function (require) {
 			var view = createView();
 			return view;
 		};
+		
+		that.onRender = function(options) {
+			setTimeout(function() {
+				$('#home-demo').removeClass('invisible').addClass("rollIn");
+			}, 500);
+			 $('#home-welcome').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function (){
+     //$('#home-demo').removeClass('invisible').addClass("zoomInUp");
+     //$('#').addClass('animated infinite shake');
+    } );
+		};
 
 		function createView() {
 

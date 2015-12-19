@@ -43,52 +43,58 @@ define(function (require) {
 		$(kudu).on("viewInit", viewInit);
 		$(kudu).on("viewRender", viewRender);
 		$(kudu).on("viewComplete", viewComplete);
+		$(kudu).on("viewRemove", viewRemove);
 		$(kudu).on("viewBeforeUnrender", viewBeforeUnrender);
 		$(kudu).on("viewUnrender", viewUnrender);
 		$(kudu).on("viewFail", viewFail);
 	}
 
 	function removeGlobalEventListeners() {
+		$(kudu).off("viewRemove", viewRemove);
 		$(kudu).off("viewBeforeInit", viewBeforeInit);
 		$(kudu).off("viewInit", viewInit);
 		$(kudu).off("viewRender", viewRender);
 		$(kudu).off("viewComplete", viewComplete);
+		$(kudu).off("viewRemove", viewRemove);
 		$(kudu).off("viewBeforeUnrender", viewBeforeUnrender);
 		$(kudu).off("viewUnrender", viewUnrender);
 		$(kudu).off("viewFail", viewFail);
 	}
+	
+	function viewRemove(e, options) {
+		prettyLog("viewRemove", options, options.ctrl);
+	}
 
 	function viewBeforeUnrender(e, options) {
-		prettyLog("viewBeforeUnrender", options, options.oldCtrl);
+		prettyLog("viewBeforeUnrender", options, options.ctrl);
 	}
 
 	function viewBeforeInit(e, options) {
-		prettyLog("viewBeforeInit", options, options.newCtrl);
+		prettyLog("viewBeforeInit", options, options.ctrl);
 	}
 
 	function viewInit(e, options) {
-		prettyLog("viewInit", options, options.newCtrl);
+		prettyLog("viewInit", options, options.ctrl);
 	}
 
 	function viewUnrender(e, options) {
-		prettyLog("viewUnrender", options, options.oldCtrl);
+		prettyLog("viewUnrender", options, options.ctrl);
 	}
 
 	function viewRender(e, options) {
-		prettyLog("viewRender", options,options.newCtrl );
+		prettyLog("viewRender", options,options.ctrl );
 	}
 
 	function viewComplete(e, options) {
-		prettyLog("viewComplete", options, options.newCtrl);
+		prettyLog("viewComplete", options, options.ctrl);
 	}
 
 	function viewFail(e, options) {
-		prettyLog("viewFail", options, options.newCtrl);
+		prettyLog("viewFail", options, options.ctrl);
 	}
 	
 	function prettyLog(event, options, ctrl) {
 		console.log("Global event triggered [" + event + ": %c" + getPrettyCtrlName(ctrl) + "]", "color:red", options);
-		
 	}
 
 	function getPrettyCtrlName(ctrl) {

@@ -10,28 +10,53 @@
 
     <div class="row">
         <div class="col-md-12">
-            Here we show how to subscribe to global Kudu events.
+            In this example we show how to subscribe to global Kudu events.
             <pre><code  class="line-numbers language-js">var kudu = require("kudu");
 var $ = require("jquery");
 
-$(kudu).on("viewFail", function(options) {
-    alert("Sorry, an error occurred: ", options.error[0]);
+$(kudu).on("viewInit", function(options) {
+    console.log("view has been initialized", options);
 });
 
 $(kudu).on("viewRender", function(options) {
     console.log("view has been rendered");
 });
+
+$(kudu).on("viewFail", function(options) {
+    alert("Sorry, an error occurred: ", options.error[0]);
+});
+
 </code></pre>
 
         </div>
     </div>
-    
+
+    <div class="row">
+        <div class="col-md-12 ">
+            <p>Below is the list of global events available and the order in which they are triggered:</p>
+            <ul>
+                <li><span class="met">viewBeforeInit</span></li>
+                <li><span class="met">viewInit</span></li>
+                <li><span class="met">viewRender</span></li>
+                <li><span class="met">viewComplete</span></li>
+                <li><span class="met">viewRemove</span></li>
+                <li><span class="met">viewBeforeUnrender</span></li>
+                <li><span class="met">viewUnrender</span>
+                    <ul>
+                        <li><span class="met">viewFail</span> - <span class="met">viewFail</span> is not part of the order above and can 
+                            occur during any event</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12 ">
 
             <p style="margin-top: 20px">
                 <strong>Note:</strong> use the buttons below to subscribe and unsubscribe to Kudu global events. Once subscribed, open the browser console and click
-                the <em class='btn-success'>Reload view</em> button below, to see the order of events triggered.
+                the <em class='var'>Reload view</em> button below, to see the order of events triggered.
             </p>
             <p style="margin-top: 1 0px">
 

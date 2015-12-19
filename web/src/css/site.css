@@ -4,6 +4,7 @@
 @import url("prism.css");
 @import url("parsley.css");
 @import url("home.css");
+@import url("animate.css");
 
 
 ul,li {
@@ -854,14 +855,19 @@ h1 {
 
 .parsley-errors-list {
     color: #ee5f5b;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 16px;
+}
+
+.parsley-errors-list {
+    margin-top: 5px;
 }
 
 
 .well {
     background-color: #303030;
     border: 0px solid transparent;
+    border-radius: 0px;
 }
 .form-control {
     height: 45px;
@@ -880,4 +886,7 @@ h1 {
 
 a.link:hover {
     color: #fff;
+}
+span.animated {
+    display: inline-block;
 }

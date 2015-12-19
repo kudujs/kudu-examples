@@ -6,6 +6,8 @@ define(function (require) {
 	var binding = require("app/views/basics/binding/binding");
 	var methods = require("app/views/basics/methods/methods");
 	var globalEvents = require("app/views/lifecycle/global-events/global-events");
+	var controllerEvents = require("app/views/lifecycle/ctrl-events/ctrl-events");
+	var goEvents = require("app/views/lifecycle/go-events/go-events");
 	var nav = require("app/views/nav/nav");
 	var navTarget = require("app/views/nav/nav-target");
 	var navTargetParams = require("app/views/nav/nav-target-params");
@@ -24,8 +26,10 @@ define(function (require) {
 			nav: {path: '/nav', ctrl: nav},
 			basic: {path: '/basic', ctrl: basic},
 			binding: {path: '/binding', ctrl: binding},
-			events: {path: '/events', ctrl: methods},
+			events: {path: '/methods', ctrl: methods},
 			globalEvents: {path: '/global-events', ctrl: globalEvents},
+			controllerEvents: {path: '/ctrl-events', ctrl: controllerEvents},
+			goEvents: {path: '/go-events', ctrl: goEvents},
 			navTarget: {path: '/nav-target', ctrl: navTarget},
 			navTargetParams: {path: '/nav-target-params/:id?name', ctrl: navTargetParams},
 			basicForm: {path: '/basic-form', ctrl: basicForm},

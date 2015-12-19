@@ -39,26 +39,26 @@ define(function (require) {
 		//  in case they have already been added
 		removeGlobalEventListeners();
 
-		$(kudu).on("beforeInit", beforeInit);
-		$(kudu).on("init", init);
-		$(kudu).on("render", render);
-		$(kudu).on("complete", complete);
-		$(kudu).on("remove", remove);
-		$(kudu).on("beforeUnrender", beforeUnrender);
-		$(kudu).on("unrender", unrender);
-		$(kudu).on("fail", fail);
+		$(kudu.lc).on("beforeInit", beforeInit);
+		$(kudu.lc).on("init", init);
+		$(kudu.lc).on("render", render);
+		$(kudu.lc).on("complete", complete);
+		$(kudu.lc).on("remove", remove);
+		$(kudu.lc).on("beforeUnrender", beforeUnrender);
+		$(kudu.lc).on("unrender", unrender);
+		$(kudu.lc).on("fail", fail);
 	}
 
 	function removeGlobalEventListeners() {
-		$(kudu).off("remove", remove);
-		$(kudu).off("beforeInit", beforeInit);
-		$(kudu).off("init", init);
-		$(kudu).off("render", render);
-		$(kudu).off("complete", complete);
-		$(kudu).off("remove", remove);
-		$(kudu).off("beforeUnrender", beforeUnrender);
-		$(kudu).off("unrender", unrender);
-		$(kudu).off("fail", fail);
+		$(kudu.lc).off("remove", remove);
+		$(kudu.lc).off("beforeInit", beforeInit);
+		$(kudu.lc).off("init", init);
+		$(kudu.lc).off("render", render);
+		$(kudu.lc).off("complete", complete);
+		$(kudu.lc).off("remove", remove);
+		$(kudu.lc).off("beforeUnrender", beforeUnrender);
+		$(kudu.lc).off("unrender", unrender);
+		$(kudu.lc).off("fail", fail);
 	}
 	
 	function remove(e, options) {

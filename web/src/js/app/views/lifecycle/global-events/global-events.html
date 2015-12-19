@@ -14,15 +14,15 @@
             <pre><code  class="line-numbers language-js">var kudu = require("kudu");
 var $ = require("jquery");
 
-$(kudu).on("init", function(options) {
+$(kudu.lc).on("init", function(options) {
     console.log("view has been initialized", options);
 });
 
-$(kudu).on("render", function(options) {
+$(kudu.lc).on("render", function(options) {
     console.log("view has been rendered");
 });
 
-$(kudu).on("fail", function(options) {
+$(kudu.lc).on("fail", function(options) {
     alert("Sorry, an error occurred: ", options.error[0]);
 });
 

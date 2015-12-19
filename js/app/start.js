@@ -2,6 +2,7 @@ define(function (require) {
 	var $ = require("jquery");
 	var ractive = require("ractive");
 	require("bootstrap");
+	var prism = require("prism");
 	var routes = require("app/config/routes");
 	var menu = require("./menu/menu");
 
@@ -15,14 +16,16 @@ define(function (require) {
 	kudu.init({
 		target: "#container",
 		routes: routes,
-		defaultRoute: routes.home
+		defaultRoute: routes.home,
+				fx: true
 				//unknownRouteResolver: null,
-				//fx: true
 	});
 
-	$(kudu).one("viewRender", setupInitialActiveMenu);
+	$(kudu.lc).one("render", setupInitialActiveMenu);
+	$(kudu.lc).on("render", function() { prism.highlightAll(); });
 
 	function setupInitialActiveMenu(e, options) {
+		
 		// options.initialRoute;
 		var route = kudu.getActiveRoute();
 		var path = route.path;

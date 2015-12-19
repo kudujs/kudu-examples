@@ -1,13 +1,12 @@
 // Events order
 //    RACTIVE  -> CTRL       => GLOBAL EVENT
-//			   ->            => viewBeforeInit
-//			   -> onInit     => viewInit
-//   render    -> onRender   => viewRender
-//   complete  -> onComplete => viewComplete
-//             -> onRemove
-//                           => viewBeforeUnrender
-//   unrender  -> onUnrender => viewUnrender
-//   teardown
+//             -> onRemove   => remove             (old view)
+//                           => beforeUnrender     (old view)
+//			   ->            => beforeInit         (new view)
+//			   -> onInit     => init               (new view)
+//   unrender  -> onUnrender => unrender           (old view)
+//   render    -> onRender   => render             (new view)
+//   complete  -> onComplete => complete           (new view)
 //   
 //   -----
 // viewFail - should this event be supported?
@@ -33,6 +32,8 @@ define(function (require) {
 	function kudu() {
 
 		var that = {};
+		
+		that.lc = {};
 
 		// 
 		var reenableAnimationTracker = {enable: true};
@@ -44,7 +45,10 @@ define(function (require) {
 			ctrl: null,
 			requestTracker: {active: true},
 			route: null,
-			options: null
+			options: {
+				routeParams: null,
+				args: null
+			}
 		};
 
 		var callstack = [];
@@ -64,10 +68,13 @@ define(function (require) {
 		var ajaxTracker = ajaxTrackerFn(that);
 
 		that.init = function (options) {
+			if (options == null) {
+				throw new Error("kudu.init() requires options!");
+			}
 			$.extend(initOptions, options);
 			that.validateInitOptions(initOptions);
-			
-			  Ractive.DEBUG = initOptions.debug;
+
+			Ractive.DEBUG = initOptions.debug;
 
 			router.on('routeload', function (routeOptions) {
 				if (that.getActiveRoute() == null) {
@@ -86,12 +93,12 @@ define(function (require) {
 				unknownRouteResolver: options.unknownRouteResolver
 			});
 		};
-		
-		that.router = function() {
+
+		that.router = function () {
 			return router;
 		};
-		
-		that.validateInitOptions = function(options) {
+
+		that.validateInitOptions = function (options) {
 			if (options.viewFactory == null) {
 				throw new Error("viewFactory cannot be null!");
 			}
@@ -103,7 +110,7 @@ define(function (require) {
 			}
 			if (options.viewFactory.unrenderView == null) {
 				throw new Error("viewFactory must provide an unrenderView function!");
-			}			
+			}
 		};
 
 		that.go = function (options) {
@@ -113,7 +120,7 @@ define(function (require) {
 		that.getDefaultTarget = function () {
 			return initOptions.target;
 		};
-		
+
 		that.getActiveRoute = function () {
 			return currentMVC.route;
 		};
@@ -226,7 +233,7 @@ define(function (require) {
 
 			renderer(options).then(function () {
 				that.callViewEvent("onComplete", options);
-				that.triggerEvent("viewComplete", options);
+				that.triggerEvent("complete", options);
 				deferred.resolve(options.view);
 
 			}, function (error, view) {
@@ -248,13 +255,38 @@ define(function (require) {
 
 			var ctrl = options.ctrl;
 			if (typeof ctrl[eventName] == 'function') {
-				var viewOptions = {
+
+				var currOptions = {
+					ajaxTracker: options.ajaxTracker,
 					routeParams: options.routeParams,
 					args: options.args,
 					view: options.view,
-					ajaxTracker: options.ajaxTracker
+					ctrl: options.ctrl,
+					route: options.route
 				};
-				ctrl[eventName](viewOptions);
+
+				var prevOptions = {
+					ajaxTracker: options.mvc.options.ajaxTracker, // TODO test this
+					ctrl: options.mvc.ctrl,
+					route: options.mvc.route,
+					routeParams: options.mvc.options.routeParams,
+					args: options.mvc.options.args,
+					view: options.mvc.view
+				};
+				
+				var eventOptions = {};
+
+				if (eventName === 'onUnrender') {
+					
+					eventOptions = prevOptions;
+					eventOptions.next = currOptions;
+
+				} else {
+					eventOptions = currOptions;
+					eventOptions.prev = prevOptions;
+				}
+
+				ctrl[eventName](eventOptions);
 			}
 		};
 
@@ -269,7 +301,54 @@ define(function (require) {
 			if (ctrl == null) {
 				ctrl = {};
 			}
+			
+			var currOptions = {
+					ajaxTracker: options.ajaxTracker,
+					routeParams: options.routeParams,
+					args: options.args,
+					view: options.view,
+					ctrl: options.ctrl,
+					route: options.route
+				};
 
+				var prevOptions = {
+					ajaxTracker: options.mvc.options.ajaxTracker, // TODO test this
+					ctrl: options.mvc.ctrl,
+					route: options.mvc.route,
+					routeParams: options.mvc.options.routeParams,
+					args: options.mvc.options.args,
+					view: options.mvc.view
+				};
+
+			var triggerOptions = {};
+			/*
+				ctrl: options.ctrl,
+				view: options.view,
+				args: options.args,
+				routeParams: options.routeParams,
+				route: options.route,
+				isMainCtrl: isMainCtrlReplaced,
+				//ctrlOptions: options,
+				eventName: eventName,
+				error: options.error,
+				initialRoute: options.initialRoute
+			};*/
+
+			if (eventName === 'remove'  || eventName === 'beforeUnrender' || eventName === 'unrender') {
+				triggerOptions = prevOptions;
+				triggerOptions.next = currOptions;
+
+			} else if (eventName === 'fail') {
+				triggerOptions = prevOptions;
+				triggerOptions.prev = prevOptions;
+				triggerOptions.next = currOptions;
+
+			} else {
+				triggerOptions = currOptions;
+				triggerOptions.prev = prevOptions;
+			}
+
+			/*
 			var triggerOptions = {
 				//oldCtrl: currentMVC.ctrl,
 				oldCtrl: options.mvc.ctrl,
@@ -279,15 +358,14 @@ define(function (require) {
 				eventName: eventName,
 				error: options.error,
 				initialRoute: options.initialRoute
-			};
+			};*/
 
-			$(that).trigger(eventName, [triggerOptions]);
-			
+			$(that.lc).trigger(eventName, [triggerOptions]);
+
+			// Call events defined as go() options
 			if (options[eventName]) {
 				options[eventName](triggerOptions);
-				
 			}
-
 		};
 
 		function processOnInit(options) {
@@ -295,15 +373,23 @@ define(function (require) {
 			var promise = deferred.promise();
 
 			var onInitOptions = {
+				route: options.route,
 				ctrl: options.ctrl,
 				routeParams: options.routeParams,
 				args: options.args,
 				mvc: options.mvc,
 				ajaxTracker: options.ajaxTracker,
-				target: options.target
+				target: options.target,
+				prev: {
+					ajaxTracker: options.mvc.options.ajaxTracker,
+					ctrl: options.mvc.ctrl,
+					route: options.mvc.route,
+					routeParams: options.mvc.options.routeParams,
+					view: options.mvc.view,
+					args: options.mvc.options.args
+				}
 			};
-
-			that.triggerEvent("viewBeforeInit", options);
+			that.triggerEvent("beforeInit", options);
 
 			onInitHandler(onInitOptions).then(function (viewOrPromise) {
 
@@ -312,7 +398,7 @@ define(function (require) {
 
 					options.view = view;
 					options.kudu = that;
-					that.triggerEvent("viewInit", options);
+					that.triggerEvent("init", options);
 
 					that.processNewView(options).then(function (view) {
 
@@ -347,11 +433,19 @@ define(function (require) {
 			var promise = deferred.promise();
 
 			var onRemoveOptions = {
+				next: {
+					ctrl: options.ctrl,
+					route: options.route,
+					view: options.view,
+					args: options.args,
+					routeParams: options.routeParams,
+					ajaxTracker: options.ajaxTracker
+				},
 				ctrl: currentMVC.ctrl,
+				route: currentMVC.route,
 				view: currentMVC.view,
 				routeParams: currentMVC.options.routeParams,
 				args: currentMVC.options.args,
-				//requestTracker: currentMVC.requestTracker,
 				mvc: options.mvc,
 				ajaxTracker: currentMVC.options.ajaxTracker,
 				target: currentMVC.options.target
@@ -359,8 +453,10 @@ define(function (require) {
 			};
 
 			onRemoveHandler(onRemoveOptions).then(function () {
+				
+				that.triggerEvent("remove", options);
 
-				that.triggerEvent("viewBeforeUnrender", options);
+				that.triggerEvent("beforeUnrender", options);
 
 				deferred.resolve();
 
@@ -506,12 +602,14 @@ define(function (require) {
 			var promise = deferred.promise();
 
 			var leaveOptions = {
-				ctrl: options.ctrl,
-				prevCtrl: currentMVC.ctrl,
-				view: options.view,
-				prevView: currentMVC.view,
-				route: options.route,
-				prevRoute: currentMVC.route,
+				ctrl: currentMVC.ctrl,
+				view: currentMVC.view,
+				route: currentMVC.route,
+				next: {
+					ctrl: options.ctrl,
+					view: options.view,
+					route: options.route,
+				},
 				target: options.target
 			};
 
@@ -575,11 +673,13 @@ define(function (require) {
 
 			var enterOptions = {
 				ctrl: options.ctrl,
-				prevCtrl: currentMVC.ctrl,
 				view: options.view,
-				prevView: currentMVC.view,
 				route: options.route,
-				prevRoute: currentMVC.route,
+				prev: {
+					ctrl: currentMVC.ctrl,
+					view: currentMVC.view,
+					route: currentMVC.route
+				},
 				target: options.target
 			};
 
@@ -680,10 +780,10 @@ define(function (require) {
 
 			//options.view.transitionsEnabled = true;
 
-			// Seems that Ractive render swallows errors so here we catch and log errors thrown by the viewRender event
+			// Seems that Ractive render swallows errors so here we catch and log errors thrown by the render event
 			try {
 				that.callViewEvent("onRender", options);
-				that.triggerEvent("viewRender", options);
+				that.triggerEvent("render", options);
 
 			} catch (error) {
 				deferred.reject(error);
@@ -736,10 +836,10 @@ define(function (require) {
 			var deferred = $.Deferred();
 			var promise = deferred.promise();
 
-			// Seems that Ractive unrender swallows errors so here we catch and log errors thrown by the viewUnrender event
+			// Seems that Ractive unrender swallows errors so here we catch and log errors thrown by the unrender event
 			try {
 				that.callViewEvent("onUnrender", options);
-				that.triggerEvent("viewUnrender", options);
+				that.triggerEvent("unrender", options);
 
 			} catch (error) {
 				deferred.reject(error);
@@ -780,16 +880,6 @@ define(function (require) {
 			}, 350);
 		}
 
-		/*
-		 function setupRoutesByPaths(routes) {
-		 for (var key in routes) {
-		 if (routes.hasOwnProperty(key)) {
-		 var route = routes[key];
-		 that.addRouteByPath(route);
-		 }
-		 }
-		 }*/
-
 		function viewFailed(options, errorArray) {
 			var errors = errorArray;
 			if (!$.isArray(errorArray)) {
@@ -802,8 +892,10 @@ define(function (require) {
 				if (options.error.length === 0) {
 					console.error("error occurred!", options);
 
- 				} else {
-					console.error(options.error[0], options);
+				} else {
+					for (var i = 0; i < options.error.length; i++) {
+						console.error(options.error[i].stack);
+					}
 				}
 			}
 		}

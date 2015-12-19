@@ -4,6 +4,7 @@
 @import url("prism.css");
 @import url("parsley.css");
 @import url("home.css");
+@import url("animate.css");
 
 
 ul,li {
@@ -381,8 +382,23 @@ a:visited {
 .version {
     font-size: small;
 }
+.ln {
+    color: #66d9ef;
+}
+.var {
+    color: #a6e22e;
+}
+.met {
+    color: #e6db74;
+}
+.fun {
+    color: #e6db74;
+}
 .highlight {
-    color: #E5053A;
+    color: #009DDB;
+}
+.highlightLetter {
+    color: #009DDB;
 }
 .off-color {
     color: #888;
@@ -839,14 +855,19 @@ h1 {
 
 .parsley-errors-list {
     color: #ee5f5b;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 16px;
+}
+
+.parsley-errors-list {
+    margin-top: 5px;
 }
 
 
 .well {
     background-color: #303030;
     border: 0px solid transparent;
+    border-radius: 0px;
 }
 .form-control {
     height: 45px;
@@ -857,4 +878,15 @@ h1 {
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
     background-color: #e7e7e7;
         color: #666;
+}
+.link, a.link, a.link:active {
+    text-decoration: underline;
+    color: #66d9ef;
+}
+
+a.link:hover {
+    color: #fff;
+}
+span.animated {
+    display: inline-block;
 }

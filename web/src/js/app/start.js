@@ -21,8 +21,8 @@ define(function (require) {
 				//unknownRouteResolver: null,
 	});
 
-	$(kudu).one("viewRender", setupInitialActiveMenu);
-	$(kudu).on("viewRender", function() { prism.highlightAll(); });
+	$(kudu).one("render", setupInitialActiveMenu);
+	$(kudu).on("render", function() { prism.highlightAll(); });
 
 	function setupInitialActiveMenu(e, options) {
 		

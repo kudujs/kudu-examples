@@ -21,37 +21,37 @@ define(function (require) {
 
 				kudu.go({ctrl: goEvents,
 					
-					viewRemove: function (options) {
-						prettyLog("viewRemove", options, options.ctrl);
+					remove: function (options) {
+						prettyLog("remove", options, options.ctrl);
 					},
 					
-					viewBeforeUnrender: function (options) {
-						prettyLog("viewBeforeUnrender", options, options.ctrl);
+					beforeUnrender: function (options) {
+						prettyLog("beforeUnrender", options, options.ctrl);
 					},
 					
 					
-					viewBeforeInit: function (options) {
-						prettyLog("viewBeforeInit", options, options.ctrl);
+					beforeInit: function (options) {
+						prettyLog("beforeInit", options, options.ctrl);
 					},
 					
-					viewInit: function (options) {
-						prettyLog("viewInit", options, options.ctrl);
+					init: function (options) {
+						prettyLog("init", options, options.ctrl);
 					},
 					
-					viewUnrender: function (options) {
-						prettyLog("viewUnrender", options, options.ctrl);
+					unrender: function (options) {
+						prettyLog("unrender", options, options.ctrl);
 					},
 					
-					viewRender: function (options) {
-						prettyLog("viewRender", options,options.ctrl );
+					render: function (options) {
+						prettyLog("render", options,options.ctrl );
 					},
 					
-					viewComplete: function (options) {
-						prettyLog("viewComplete", options, options.ctrl);
+					complete: function (options) {
+						prettyLog("complete", options, options.ctrl);
 					},
 
-					viewFail: function (options) {
-						prettyLog("viewFail", options, options.ctrl);
+					fail: function (options) {
+						prettyLog("fail", options, options.ctrl);
 					}
 
 				});

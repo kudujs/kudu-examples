@@ -14,15 +14,15 @@
             <pre><code  class="line-numbers language-js">var kudu = require("kudu");
 var $ = require("jquery");
 
-$(kudu).on("viewInit", function(options) {
+$(kudu).on("init", function(options) {
     console.log("view has been initialized", options);
 });
 
-$(kudu).on("viewRender", function(options) {
+$(kudu).on("render", function(options) {
     console.log("view has been rendered");
 });
 
-$(kudu).on("viewFail", function(options) {
+$(kudu).on("fail", function(options) {
     alert("Sorry, an error occurred: ", options.error[0]);
 });
 
@@ -35,15 +35,15 @@ $(kudu).on("viewFail", function(options) {
         <div class="col-md-12 ">
             <p>Below is the list of global events available and the order in which they are triggered:</p>
             <ul>
-                <li><span class="met">viewBeforeInit</span></li>
-                <li><span class="met">viewInit</span></li>
-                <li><span class="met">viewRender</span></li>
-                <li><span class="met">viewComplete</span></li>
-                <li><span class="met">viewRemove</span></li>
-                <li><span class="met">viewBeforeUnrender</span></li>
-                <li><span class="met">viewUnrender</span>
+                <li><span class="met">beforeInit</span></li>
+                <li><span class="met">init</span></li>
+                <li><span class="met">render</span></li>
+                <li><span class="met">complete</span></li>
+                <li><span class="met">remove</span></li>
+                <li><span class="met">beforeUnrender</span></li>
+                <li><span class="met">unrender</span>
                     <ul>
-                        <li><span class="met">viewFail</span> - <span class="met">viewFail</span> is not part of the order above and can 
+                        <li><span class="met">fail</span> - <span class="met">fail</span> is not part of the order above and can 
                             occur during any event</li>
                     </ul>
                 </li>

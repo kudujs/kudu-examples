@@ -39,58 +39,58 @@ define(function (require) {
 		//  in case they have already been added
 		removeGlobalEventListeners();
 
-		$(kudu).on("viewBeforeInit", viewBeforeInit);
-		$(kudu).on("viewInit", viewInit);
-		$(kudu).on("viewRender", viewRender);
-		$(kudu).on("viewComplete", viewComplete);
-		$(kudu).on("viewRemove", viewRemove);
-		$(kudu).on("viewBeforeUnrender", viewBeforeUnrender);
-		$(kudu).on("viewUnrender", viewUnrender);
-		$(kudu).on("viewFail", viewFail);
+		$(kudu).on("beforeInit", beforeInit);
+		$(kudu).on("init", init);
+		$(kudu).on("render", render);
+		$(kudu).on("complete", complete);
+		$(kudu).on("remove", remove);
+		$(kudu).on("beforeUnrender", beforeUnrender);
+		$(kudu).on("unrender", unrender);
+		$(kudu).on("fail", fail);
 	}
 
 	function removeGlobalEventListeners() {
-		$(kudu).off("viewRemove", viewRemove);
-		$(kudu).off("viewBeforeInit", viewBeforeInit);
-		$(kudu).off("viewInit", viewInit);
-		$(kudu).off("viewRender", viewRender);
-		$(kudu).off("viewComplete", viewComplete);
-		$(kudu).off("viewRemove", viewRemove);
-		$(kudu).off("viewBeforeUnrender", viewBeforeUnrender);
-		$(kudu).off("viewUnrender", viewUnrender);
-		$(kudu).off("viewFail", viewFail);
+		$(kudu).off("remove", remove);
+		$(kudu).off("beforeInit", beforeInit);
+		$(kudu).off("init", init);
+		$(kudu).off("render", render);
+		$(kudu).off("complete", complete);
+		$(kudu).off("remove", remove);
+		$(kudu).off("beforeUnrender", beforeUnrender);
+		$(kudu).off("unrender", unrender);
+		$(kudu).off("fail", fail);
 	}
 	
-	function viewRemove(e, options) {
-		prettyLog("viewRemove", options, options.ctrl);
+	function remove(e, options) {
+		prettyLog("remove", options, options.ctrl);
 	}
 
-	function viewBeforeUnrender(e, options) {
-		prettyLog("viewBeforeUnrender", options, options.ctrl);
+	function beforeUnrender(e, options) {
+		prettyLog("beforeUnrender", options, options.ctrl);
 	}
 
-	function viewBeforeInit(e, options) {
-		prettyLog("viewBeforeInit", options, options.ctrl);
+	function beforeInit(e, options) {
+		prettyLog("beforeInit", options, options.ctrl);
 	}
 
-	function viewInit(e, options) {
-		prettyLog("viewInit", options, options.ctrl);
+	function init(e, options) {
+		prettyLog("init", options, options.ctrl);
 	}
 
-	function viewUnrender(e, options) {
-		prettyLog("viewUnrender", options, options.ctrl);
+	function unrender(e, options) {
+		prettyLog("unrender", options, options.ctrl);
 	}
 
-	function viewRender(e, options) {
-		prettyLog("viewRender", options,options.ctrl );
+	function render(e, options) {
+		prettyLog("render", options,options.ctrl );
 	}
 
-	function viewComplete(e, options) {
-		prettyLog("viewComplete", options, options.ctrl);
+	function complete(e, options) {
+		prettyLog("complete", options, options.ctrl);
 	}
 
-	function viewFail(e, options) {
-		prettyLog("viewFail", options, options.ctrl);
+	function fail(e, options) {
+		prettyLog("fail", options, options.ctrl);
 	}
 	
 	function prettyLog(event, options, ctrl) {

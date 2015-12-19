@@ -21,12 +21,12 @@ var myController = require("app/pages/myController");
 
 kudu.go({ctrl: myController,
 					
-    viewInit: function (options) {
-    	console.log("viewInit", options, options.ctrl);
+    init: function (options) {
+    	console.log("init", options, options.ctrl);
     },
 					
-    viewBemove: function (options) {
-        console.log("viewRemove", options, options.ctrl);
+    remove: function (options) {
+        console.log("remove", options, options.ctrl);
     }
 });</code></pre>
 

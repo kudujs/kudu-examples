@@ -22,33 +22,39 @@ clean(rConfig);
 
 optimize(rConfig, appConfig).then(function (buildResponse) {
 
-	renameConfigToRequire(rConfig);
-	deployExamples(rConfig, appConfig);
-	console.log("Build completed successfully!");
-
-/*
-	versionAssets(rConfig).then(function () {
+	try {
+		renameConfigToRequire(rConfig);
+		deployExamples(rConfig, appConfig);
 		console.log("Build completed successfully!");
-	});*/
+
+	} catch (e) {
+		console.error(e.stack);
+	}
+
+
+	/*
+	 versionAssets(rConfig).then(function () {
+	 console.log("Build completed successfully!");
+	 });*/
 });
 /*
-function versionAssets(rConfig) {
-
-	var version = new versioning({
-		assets: [rConfig.dir + '/css/site.css', rConfig.dir + '/js/lib/require.js'],
-		grepFiles: [rConfig.dir + '/index.html']
-	});
-
-	var promise = new Promise(function (resolve, reject) {
-
-		version.run(function () {
-			resolve();
-		});
-	});
-
-
-	return promise;
-}*/
+ function versionAssets(rConfig) {
+ 
+ var version = new versioning({
+ assets: [rConfig.dir + '/css/site.css', rConfig.dir + '/js/lib/require.js'],
+ grepFiles: [rConfig.dir + '/index.html']
+ });
+ 
+ var promise = new Promise(function (resolve, reject) {
+ 
+ version.run(function () {
+ resolve();
+ });
+ });
+ 
+ 
+ return promise;
+ }*/
 
 function renameConfigToRequire(rConfig) {
 	var source = rConfig.dir + "js/app/config/config.js";
@@ -68,18 +74,18 @@ function deployExamples(rConfig, appConfig) {
 	fs.copySync(rConfig.dir, "../build/web", {clobber: true});
 	console.log(" copied " + rConfig.dir + " to ../build/web");
 	//fs.copySync(rConfig.dir, "../../kudu-examples-pages", {clobber: true});
-	
+
 	//fs.ensureSymlink("../../kudu/src/", "../../kudu-examples-pages/js/lib/kudulib/src" );
-	
+
 	try {
 
-	// annoyingly node copy fails when it hits symlinks so we copy to temp folder first using the module copyDereference
-	var tmpPages = "../../tmp-kudu-examples-pages";
-	copyDereferenceSync(rConfig.appDir, tmpPages);
-	fs.copySync(tmpPages, "../../kudu-examples-pages", {clobber: true});
-	fs.removeSync(tmpPages);
-	//fs.copySync("../../kudu/src/", "../../kudu-examples-pages/js/lib/kudulib", {clobber: true});
-	} catch(err) {
+		// annoyingly node copy fails when it hits symlinks so we copy to temp folder first using the module copyDereference
+		var tmpPages = "../../tmp-kudu-examples-pages";
+		copyDereferenceSync(rConfig.appDir, tmpPages);
+		fs.copySync(tmpPages, "../../kudu-examples-pages", {clobber: true});
+		fs.removeSync(tmpPages);
+		//fs.copySync("../../kudu/src/", "../../kudu-examples-pages/js/lib/kudulib", {clobber: true});
+	} catch (err) {
 		throw err;
 	}
 	console.log(" copied '" + rConfig.appDir + "' to '../../kudu-examples-pages'");

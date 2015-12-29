@@ -39,57 +39,57 @@ define(function (require) {
 		//  in case they have already been added
 		removeGlobalEventListeners();
 
-		$(kudu.lc).on("beforeInit", beforeInit);
-		$(kudu.lc).on("init", init);
-		$(kudu.lc).on("render", render);
-		$(kudu.lc).on("complete", complete);
-		$(kudu.lc).on("remove", remove);
-		$(kudu.lc).on("beforeUnrender", beforeUnrender);
-		$(kudu.lc).on("unrender", unrender);
-		$(kudu.lc).on("fail", fail);
+		kudu.on("lc.beforeInit", beforeInit);
+		kudu.on("lc.init", init);
+		kudu.on("lc.render", render);
+		kudu.on("lc.complete", complete);
+		kudu.on("lc.remove", remove);
+		kudu.on("lc.beforeUnrender", beforeUnrender);
+		kudu.on("lc.unrender", unrender);
+		kudu.on("lc.fail", fail);
 	}
 
 	function removeGlobalEventListeners() {
-		$(kudu.lc).off("remove", remove);
-		$(kudu.lc).off("beforeInit", beforeInit);
-		$(kudu.lc).off("init", init);
-		$(kudu.lc).off("render", render);
-		$(kudu.lc).off("complete", complete);
-		$(kudu.lc).off("remove", remove);
-		$(kudu.lc).off("beforeUnrender", beforeUnrender);
-		$(kudu.lc).off("unrender", unrender);
-		$(kudu.lc).off("fail", fail);
+		kudu.off("lc.remove", remove);
+		kudu.off("lc.beforeInit", beforeInit);
+		kudu.off("lc.init", init);
+		kudu.off("lc.render", render);
+		kudu.off("lc.complete", complete);
+		kudu.off("lc.remove", remove);
+		kudu.off("lc.beforeUnrender", beforeUnrender);
+		kudu.off("lc.unrender", unrender);
+		kudu.off("lc.fail", fail);
 	}
 	
-	function remove(e, options) {
+	function remove(options) {
 		prettyLog("remove", options, options.ctrl);
 	}
 
-	function beforeUnrender(e, options) {
+	function beforeUnrender(options) {
 		prettyLog("beforeUnrender", options, options.ctrl);
 	}
 
-	function beforeInit(e, options) {
+	function beforeInit(options) {
 		prettyLog("beforeInit", options, options.ctrl);
 	}
 
-	function init(e, options) {
+	function init(options) {
 		prettyLog("init", options, options.ctrl);
 	}
 
-	function unrender(e, options) {
+	function unrender(options) {
 		prettyLog("unrender", options, options.ctrl);
 	}
 
-	function render(e, options) {
+	function render(options) {
 		prettyLog("render", options,options.ctrl );
 	}
 
-	function complete(e, options) {
+	function complete(options) {
 		prettyLog("complete", options, options.ctrl);
 	}
 
-	function fail(e, options) {
+	function fail(options) {
 		prettyLog("fail", options, options.ctrl);
 	}
 	

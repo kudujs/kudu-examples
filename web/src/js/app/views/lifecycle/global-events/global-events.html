@@ -10,19 +10,20 @@
 
     <div class="row">
         <div class="col-md-12">
-            In this example we show how to subscribe to global Kudu events.
+            In this example we show how to subscribe to Kudu lifecycle events. Lifecycle events uses the <span class="var">"lc."</span> prefix,
+            as shown below on <span class="ln">line 4</span>.
             <pre><code  class="line-numbers language-js">var kudu = require("kudu");
 var $ = require("jquery");
 
-$(kudu.lc).on("init", function(options) {
+kudu.on("lc.init", function(options) {
     console.log("view has been initialized", options);
 });
 
-$(kudu.lc).on("render", function(options) {
+kudu.on("lc.render", function(options) {
     console.log("view has been rendered");
 });
 
-$(kudu.lc).on("fail", function(options) {
+kudu.on("lc.fail", function(options) {
     alert("Sorry, an error occurred: ", options.error[0]);
 });
 

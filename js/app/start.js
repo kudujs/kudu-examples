@@ -21,10 +21,10 @@ define(function (require) {
 				//unknownRouteResolver: null,
 	});
 
-	$(kudu.lc).one("render", setupInitialActiveMenu);
-	$(kudu.lc).on("render", function() { prism.highlightAll(); });
+	kudu.once("lc.render", setupInitialActiveMenu);
+	kudu.on("lc.render", function() { prism.highlightAll(); });
 
-	function setupInitialActiveMenu(e, options) {
+	function setupInitialActiveMenu(options) {
 		
 		// options.initialRoute;
 		var route = kudu.getActiveRoute();

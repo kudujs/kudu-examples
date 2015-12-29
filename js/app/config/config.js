@@ -51,29 +51,6 @@ requirejs.config({
 // onResourceLoad is a requirejs extension to manipulate modules being loaded.
 // Here we add a the module ID (which is also the path to the module location)
 // as an attribute on the module itself
-requirejs.onResourceLoad = function (context, map, depArray) {
-	var obj = context.defined[map.name];
-
-	if (obj) {
-		if (obj.prototype) {
-			setId(obj.prototype, map.id);
-			setId(obj, map.id);
-		} else {
-			setId(obj, map.id);
-		}
-	}
-};
-
-function setId(obj, id) {
-	// Create an ID property which isn't writable or iteratable through for in loops.
-	if (!obj.id) {
-		Object.defineProperty(obj, "id", {
-			enumerable: false,
-			writable: false,
-			value: id
-		});
-	}
-}
 
 /*
  requirejs.onError = function (err) {
@@ -85,6 +62,8 @@ function setId(obj, id) {
  }
  };*/
 
-// Load the start module to start the application
-requirejs(["app/start"]);
-	
+// Load the addId modules which automatically adds an ID to each loaded module
+requirejs(["app/config/addId"], function() {
+	// Load the start module to start the application
+	requirejs(["app/start"]);
+});

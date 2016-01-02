@@ -5,9 +5,6 @@ define(function (require) {
 	var prism = require("prism");
 	var routes = require("app/config/routes");
 	var menu = require("./menu/menu");
-	var pace = require("pace");
-	
-	pace.start();
 
 	menu.init({target: "#menu"});
 
@@ -20,15 +17,17 @@ define(function (require) {
 		target: "#container",
 		routes: routes,
 		defaultRoute: routes.home,
-				fx: true
+		fx: true
 				//unknownRouteResolver: null,
 	});
 
 	kudu.once("lc.render", setupInitialActiveMenu);
-	kudu.on("lc.render", function() { prism.highlightAll(); });
+	kudu.on("lc.render", function () {
+		prism.highlightAll();
+	});
 
 	function setupInitialActiveMenu(options) {
-		
+
 		// options.initialRoute;
 		var route = kudu.getActiveRoute();
 		var path = route.path;

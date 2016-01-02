@@ -62,6 +62,9 @@ requirejs.config({
  }
  };*/
 
+requirejs(["pace"], function(pace) {
+	pace.start();
+});
 // Load the addId modules which automatically adds an ID to each loaded module
 requirejs(["app/config/addId"], function() {
 	// Load the start module to start the application

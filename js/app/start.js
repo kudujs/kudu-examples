@@ -5,6 +5,9 @@ define(function (require) {
 	var prism = require("prism");
 	var routes = require("app/config/routes");
 	var menu = require("./menu/menu");
+	var pace = require("pace");
+	
+	pace.start();
 
 	menu.init({target: "#menu"});
 

@@ -22,9 +22,22 @@ app.get("/", function (req, res) {
 	res.redirect("/index.html");
 });
 
-app.get("/data", function (req, res) {
-	res.end("{hello: 'worold'");
+app.get("/data/hello.json", function (req, res) {
+	var sleep =  req.query.delay || 0;	
+ setTimeout(function() {
+	 res.sendFile(__dirname + "/src" + req.path); 
+ }, sleep);
 });
+
+app.get('/js/app/views/home/home.js', function(req, res) {
+ //var sleep = 2000;
+ var sleep = 0;
+ setTimeout(function() {
+ res.sendFile(__dirname + "/src" + req.path);
+ //res.sendFile(__dirname + "/src/" + req.path);	
+ 
+ }, sleep);
+ });
 
 /*
  app.get("/", checkAuth, function (req, res) {

@@ -1,17 +1,15 @@
 define(function (require) {
-	var $ = require("jquery");
+		var $ = require("jquery");
 	var ractive = require("ractive");
 	require("bootstrap");
 	var prism = require("prism");
 	var routes = require("app/config/routes");
 	var menu = require("./menu/menu");
-
-	menu.init({target: "#menu"});
+	
+		menu.init({target: "#menu"});
 
 
 	var kudu = require("kudu");
-
-	kudu.router().addRoute({path: "/moo", moduleId: "one"});
 
 	kudu.init({
 		target: "#container",

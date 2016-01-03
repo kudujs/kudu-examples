@@ -29,7 +29,7 @@ define(function (require) {
 
 		function fetchData(ajaxTracker, view) {
 			// We start the Ajax request
-			var xhr = $.getJSON("/data/hello.json?delay=2000");
+			var xhr = $.getJSON("data/hello.json?delay=2000");
 			// We add the xhr to the AjaxTracker
 			ajaxTracker.add(xhr);
 

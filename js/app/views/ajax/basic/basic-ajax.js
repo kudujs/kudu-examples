@@ -12,7 +12,7 @@ define(function (require) {
 			var promise = new Promise(function (resolve, reject) {
 
 				// We load the json data through an Ajax request
-				$.getJSON("/data/hello.json?delay=2000").then(function (data) {
+				$.getJSON("data/hello.json?delay=2000").then(function (data) {
 
 					// Here we have the data and pass it to the createView method to render
 					var view = createView(data);

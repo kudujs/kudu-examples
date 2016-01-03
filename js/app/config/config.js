@@ -62,11 +62,35 @@ requirejs.config({
  }
  };*/
 
-requirejs(["pace"], function(pace) {
-	pace.start();
+requirejs(["pace"], function (pace) {
+	
+	pace.start({
+			//ajax: false, // disabled
+			document: false, // disabled
+			eventLag: false // disabled
+			
+	});
+	pace.on("stop", function() {
+		var e = document.querySelector(".pace");
+	e.classList.add("initial");
+	//debugger;
+	});
+	pace.on("hide", function() {
+		var e = document.querySelector(".pace");
+	e.classList.add("initial");
+	//debugger;
+	});
+;
+	pace.on("done", function() {
+		var e = document.querySelector(".pace");
+	//e.classList.add("initial");
+	//debugger;
+	});
+	var e = document.querySelector(".pace");
+	e.classList.add("initial");
 });
 // Load the addId modules which automatically adds an ID to each loaded module
-requirejs(["app/config/addId"], function() {
+requirejs(["app/config/addId"], function () {
 	// Load the start module to start the application
 	requirejs(["app/start"]);
 });

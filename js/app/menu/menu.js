@@ -1,6 +1,7 @@
 define(function (require) {
 	
 	var kudu = require("kudu");
+	var pace = require("pace");
 	var menuTemplate = require("rvc!./menu");
 	var sidePanel = require("app/panel/side-panel/sidePanel");
 	var ctrlEvents = require("app/views/lifecycle/ctrl-events/ctrl-events");
@@ -50,6 +51,8 @@ define(function (require) {
 
 			// Add highlight to menu
 			highlightActiveMenu();
+			
+			pace.stop();
 		};
 
 		function highlightActiveMenu() {

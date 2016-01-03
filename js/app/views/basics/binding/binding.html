@@ -4,23 +4,28 @@
         <div class="col-md-12">
             <h1 style="padding-top:30px; padding-bottom:0px;">Binding <span class="highlightLetter"></span></h1>
         </div>
-        
-        <span class="ln">binding.html</span>
-        <pre><code  class="line-numbers language-js">&lt;input value="\{{name}}">
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <span class="ln">binding.html</span>
+            <pre><code  class="line-numbers language-js">&lt;input value="\{{name}}">
 &lt;div>Hello \{{name}}&lt;/div>
 &lt;button on-click="reset()">Set to original value&lt;/button> </code></pre>
-        
-        <p><span class="ln">Line 1</span> adds a two-way binding to the input value to the <span class="var">name</span> variable through the <span class="var">\{{name}}</span>
-            mustache.</p>
-        <p><span class="ln">Line 2</span> adds a one-way binding to the &lt;div&gt; element through the <span class="var">\{{name}}</span>
-            mustache.</p>
-        <p><span class="ln">Line 3</span> adds a an <span class="met">on-click</span> listener to the button which calls the method <span class="met">reset()</span>.
-            The reset() method uses the Ractive.set() method to reset the <span class="var">name</span> variale, see <span class="ln">line 8</span> below.
-        </p>
-        
 
-        <span class="ln">binding.js</span>
-        <pre><code  class="line-numbers language-js">	function createView() {
+            <p><span class="ln">Line 1</span> adds a two-way binding to the input value to the <span class="var">name</span> variable through the <span class="var">\{{name}}</span>
+                mustache.</p>
+            <p><span class="ln">Line 2</span> adds a one-way binding to the &lt;div&gt; element through the <span class="var">\{{name}}</span>
+                mustache.</p>
+            <p><span class="ln">Line 3</span> adds a an <span class="met">on-click</span> listener to the button which calls the method <span class="met">reset()</span>.
+                The reset() method uses the Ractive.set() method to reset the <span class="var">name</span> variale, see <span class="ln">line 8</span> below.
+            </p>
+
+
+            <span class="ln">binding.js</span>
+            <pre><code  class="line-numbers language-js">	function createView() {
 
 			var view = new template({
 				
@@ -34,22 +39,23 @@
 		}
 }); </code></pre>
 
-        <div class="row">
-            <div class="col-md-12">
-                <form class="form-inline">
-
-
-                    <div class="form-group col-md-12" style="margin-top: 20px">
-                        <label>Enter name</label>
-                        <input style="color:#000" value="{{name}}">
-                        <div>Hello <strong>{{name}}</strong></div>
-                    </div>
-                    <div class="form-group col-md-3" style="margin-top: 20px">
-                        <button type="button" class="btn btn-success"  on-click="reset()">Set programmatically to original value</button>
-                    </div>
-                </form>                
-            </div>
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-inline">
+
+
+                <div class="form-group col-md-12" style="margin-top: 20px">
+                    <label>Enter name</label>
+                    <input style="color:#000" value="{{name}}">
+                    <div>Hello <strong>{{name}}</strong></div>
+                </div>
+                <div class="form-group col-md-3" style="margin-top: 20px">
+                    <button type="button" class="btn btn-success"  on-click="reset()">Set programmatically to original value</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

@@ -13,6 +13,8 @@ define(function (require) {
 	var navTargetParams = require("app/views/nav/nav-target-params");
 	var basicForm = require("app/views/forms/basic/basic-form");
 	var validatingForm = require("app/views/forms/validate/validating-form");	
+	var ajaxBasics = require("app/views/ajax/basic/basic-ajax");	
+	var ajaxTracker = require("app/views/ajax/tracker/ajaxtracker");	
 	var notFound = require("app/views/notfound/notFound");
 
 	function routes() {
@@ -34,6 +36,8 @@ define(function (require) {
 			navTargetParams: {path: '/nav-target-params/:id?name', ctrl: navTargetParams},
 			basicForm: {path: '/basic-form', ctrl: basicForm},
 			validatingForm: {path: '/form-validation', ctrl: validatingForm},
+			ajaxBasics: {path: '/ajax-basics', ctrl: ajaxBasics},
+			ajaxTracker: {path: '/ajax-tracker', ctrl: ajaxTracker},
 			notFound: {path: '*', ctrl: notFound}
 		};
 

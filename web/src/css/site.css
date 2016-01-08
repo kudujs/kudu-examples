@@ -891,3 +891,9 @@ a.link:hover {
 span.animated {
     display: inline-block;
 }
+
+.comp {
+    background:tomato;
+    color: #000;
+    padding: 10px;
+}

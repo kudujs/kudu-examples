@@ -11,11 +11,18 @@ You can run the examples on __node express__ as follows:
 
 Build
 -----
-The examples is structured as a Java web application. Run the application from the 'src' folder eg: http://localhost:8080/kudu-examples/src.
+To build kudu examples, perform the following steps:
 
-To build a release navigate to 'jsbuild' and run 'node build'.
+```
+cd kudujs
+git clone https://github.com/kudujs/kudu-examples.git
+git clone https://github.com/kudujs/kudu-examples.git --branch gh-pages kudu-examples-pages
+cd kudu-examples/jsbuild
+npm install
+node build
+```
 
 This command will create an optimized version of the examples and copy the output to the folder 'build/web/'.
 
 The output will also be copied to the project 'kudu-examples-pages'.
-This project can be committed to Github which deploys the examples at the url: http://kudujs.github.io/kudu-examples/.
+The 'kudu-examples-pages' project can be committed to Github which deploys the examples at the url: http://kudujs.github.io/kudu-examples/.

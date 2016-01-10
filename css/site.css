@@ -891,3 +891,17 @@ a.link:hover {
 span.animated {
     display: inline-block;
 }
+
+.comp {
+    background:#449d44;
+    color: #fff;
+    padding: 10px;
+}
+
+.compB {
+    background:#c9302c;
+}
+.partial {
+    background:#c9302c;
+    padding: 10px;
+}

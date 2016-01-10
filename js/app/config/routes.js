@@ -12,9 +12,13 @@ define(function (require) {
 	var navTarget = require("app/views/nav/nav-target");
 	var navTargetParams = require("app/views/nav/nav-target-params");
 	var basicForm = require("app/views/forms/basic/basic-form");
-	var validatingForm = require("app/views/forms/validate/validating-form");	
-	var ajaxBasics = require("app/views/ajax/basic/basic-ajax");	
-	var ajaxTracker = require("app/views/ajax/tracker/ajaxtracker");	
+	var validatingForm = require("app/views/forms/validate/validating-form");
+	var ajaxBasics = require("app/views/ajax/basic/basic-ajax");
+	var ajaxTracker = require("app/views/ajax/tracker/ajaxtracker");
+        var compBasics = require("app/views/comp/basic/basic-comp");
+        var compPubSub = require("app/views/comp/pubsub/comp-pubsub");
+        var multiComp = require("app/views/comp/multple/multiple-comp");
+        var partialBasics = require("app/views/partial/basic/basic-partial");
 	var notFound = require("app/views/notfound/notFound");
 
 	function routes() {
@@ -38,6 +42,10 @@ define(function (require) {
 			validatingForm: {path: '/form-validation', ctrl: validatingForm},
 			ajaxBasics: {path: '/ajax-basics', ctrl: ajaxBasics},
 			ajaxTracker: {path: '/ajax-tracker', ctrl: ajaxTracker},
+                        compBasics: {path: '/comp-basics', ctrl: compBasics},
+                        compPubSub: {path: '/comp-pubsub', ctrl: compPubSub},
+                        multiComp: {path: '/comp-multi', ctrl: multiComp},
+                        partialBasics: {path: '/partial-basics', ctrl: partialBasics},
 			notFound: {path: '*', ctrl: notFound}
 		};
 

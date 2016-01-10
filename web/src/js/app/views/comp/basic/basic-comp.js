@@ -15,7 +15,7 @@ define(function (require) {
         };
 
         function createView(data) {
-
+            
             var component = ractive.extend({
                 template: '<div on-click="activate()" class="comp">{{message}}</div>',
                 activate: function () {

@@ -1,11 +1,4 @@
 <div class="row">
-
-    <div class="col-md-12">
-        <h1 style="padding-top:30px; padding-bottom:0px;">Publish/Subscribe to <span class="highlightLetter">Components</span></h1>
-    </div>
-</div>
-
-<div class="row">
     <div class="col-md-2">
         <table class='table'>
             <thead>
@@ -13,6 +6,7 @@
 
                     <th>Name</th>
                     <th>Age</th>                
+                    <th>Delete</th>  
                 </tr>
             </thead>
 
@@ -22,7 +16,7 @@
                     <td>{{name}}</td>
                     <td>{{age}}</td>
                     <td>
-                        <button class="btn btn-danger" on-click="remove(id, i)">Remove</button>
+                        <button class="btn btn-danger" on-click="fire('public.remove', id, i)">Remove</button>
                     </td>
 
                 </tr>

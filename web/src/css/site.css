@@ -893,7 +893,15 @@ span.animated {
 }
 
 .comp {
-    background:tomato;
-    color: #000;
+    background:#449d44;
+    color: #fff;
+    padding: 10px;
+}
+
+.compB {
+    background:#c9302c;
+}
+.partial {
+    background:#c9302c;
     padding: 10px;
 }

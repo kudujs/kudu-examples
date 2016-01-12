@@ -2,15 +2,22 @@
 
 This project shows off the main features of KuduJS. View examples [here](http://kudujs.github.io/kudu-examples/).
 
-Build
------
-To build kudu examples, perform the following steps:
+Checkout Examples
+-----------------
+To checkout kudu-examples do the following:
 
 ```
-cd kudujs
 git clone https://github.com/kudujs/kudu-examples.git
-git clone https://github.com/kudujs/kudu-examples.git --branch gh-pages kudu-examples-pages
-cd kudu-examples/jsbuild
+git clone https://github.com/kudujs/kudu-examples.git --branch gh-pages kudu-examples-pages # this command will checkout the live examples branch
+cd kudu-examples
+```
+
+Build
+-----
+To build kudu-examples, perform the following steps:
+
+```
+cd jsbuild
 npm install
 node build
 ```

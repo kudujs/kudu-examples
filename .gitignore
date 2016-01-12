@@ -4,3 +4,4 @@
 /build.xml
 /jsbuild/nbproject/private/
 /web/node_modules/
+/web/src/js/lib/kudulib/src/

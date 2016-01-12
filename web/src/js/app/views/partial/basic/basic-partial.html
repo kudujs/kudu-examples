@@ -9,59 +9,44 @@
 
     <div class="row">
         <div class="col-md-12">
-            <p>Partials are template snippets that can be embedded into other templates. See <a href="http://docs.ractivejs.org/latest/partials" classs="link">here</a> for details.</p>
+            <p>Partials are template snippets that can be embedded into other templates. See <a href="http://docs.ractivejs.org/latest/partials" class="link">here</a> for details.</p>
             
             <p>Below is an example partial                
             </p>
             
              {{>hello}} 
 
-            <span class="ln">binding.html</span>
-            <pre><code  class="line-numbers language-js">&lt;input value="\{{name}}">
-&lt;div>Hello \{{name}}&lt;/div>
-&lt;button on-click="reset()">Set to original value&lt;/button> </code></pre>
+             <p>Below is the javascript code:</p>
+             <pre><code  class="line-numbers language-js"> var helloPartial = require("rv!./partial");
 
-            <p><span class="ln">Line 1</span> adds a two-way binding to the input value to the <span class="var">name</span> variable through the <span class="var">\{{name}}</span>
-                mustache.</p>
-            <p><span class="ln">Line 2</span> adds a one-way binding to the &lt;div&gt; element through the <span class="var">\{{name}}</span>
-                mustache.</p>
-            <p><span class="ln">Line 3</span> adds a an <span class="met">on-click</span> listener to the button which calls the method <span class="met">reset()</span>.
-                The reset() method uses the Ractive.set() method to reset the <span class="var">name</span> variale, see <span class="ln">line 8</span> below.
-            </p>
+function createView() {
 
-
-            <span class="ln">binding.js</span>
-            <pre><code  class="line-numbers language-js">	function createView() {
-
-			var view = new template({
-				
-				data: {"name": "World!"},
-				
-				reset: function() {
-					this.set("name", "World!");
-				}
-			});
-			return view;
-		}
-}); </code></pre>
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <form class="form-inline">
-
-
-                <div class="form-group col-md-12" style="margin-top: 20px">
-                    <label>Enter name</label>
-                    <input style="color:#000" value="{{name}}">
-                    <div>Hello <strong>{{name}}</strong></div>
-                </div>
-                <div class="form-group col-md-3" style="margin-top: 20px">
-                    <button type="button" class="btn btn-success"  on-click="reset()">Set programmatically to original value</button>
-                </div>
-            </form>
+    var view = new template({				
+        partials: {hello: helloPartial}
+    });
+    return view;
+}</code></pre>
+             
+             
+             <p>In <span class="ln">line 1</span> we <span class="fun">require</span> a partial called <span class="var">helloPartial</span>.
+                 Note: we use the <span class="var">rv!</span> plugin instead of the <span class="var">rvc!</span> plugin since we simply
+                 want the template, not a component. The <span class="var">rv!</span> plugin compiles the template ready for Ractive to comsume.</p>
+             <p><span class="ln">Line 6</span> we register the <span class="var">hello</span> partial which references the <span class="var">helloPartial</span>.</p>
+             
+             <p>Next we show the template to render a partial:</p>
+                 <pre><code  class="line-numbers language-markup"> \{{>hello}} 
+</code></pre>
+             <p>In <span class="ln">line 1</span> we use <span class="var">></span> character inside a <span class="met">mustache</span>
+                 to reference the <span class="var">hello</span> partial.
+             </p>
+             
+             <p>Finally we show the actual partial below:</p>
+             
+             <pre><code  class="line-numbers language-markup">&lt;h3 class="partial">
+    Hi, I am a partial!
+&lt;/h3>
+</code></pre>
+             
         </div>
     </div>
 </div>

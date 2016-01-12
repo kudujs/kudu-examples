@@ -8,7 +8,9 @@ To checkout kudu-examples do the following:
 
 ```
 git clone https://github.com/kudujs/kudu-examples.git
-git clone https://github.com/kudujs/kudu-examples.git --branch gh-pages kudu-examples-pages # this command will checkout the live examples branch
+
+# this command will checkout the live examples branch
+git clone https://github.com/kudujs/kudu-examples.git --branch gh-pages kudu-examples-pages
 cd kudu-examples
 ```
 

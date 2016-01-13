@@ -1,5 +1,4 @@
 define(function (require) {
-	var $ = require("jquery");
 	var kudu = require("kudu");
 	var template = require("rvc!./global-events");
 	var stringUtils = require("app/utils/stringUtils");

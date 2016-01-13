@@ -1,6 +1,5 @@
 define(function (require) {
-	var $ = require("jquery");
-	var kudu = require("kudu");
+        var kudu = require("kudu");
 	var template = require("rvc!./ctrl-events");
 
 	function globalEvents() {

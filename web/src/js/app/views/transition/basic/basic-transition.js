@@ -2,9 +2,9 @@ define(function (require) {
 	var $ = require("jquery");
 	var kudu = require("kudu");
 	var fade = require("fade");
-	var template = require("rvc!./basic");
+	var template = require("rvc!./basic-transition");
 
-	function basic() {
+	function basicTransition() {
 
 		var that = {};
 
@@ -17,7 +17,7 @@ define(function (require) {
 
 			var view = new template({
 				loadView: function () {
-					kudu.go({ctrl: basic});
+					kudu.go({ctrl: basicTransition, fx: false});
 				},
 				transitions: {
 			 fade: fade
@@ -28,5 +28,5 @@ define(function (require) {
 
 		return that;
 	}
-	return basic;
+	return basicTransition;
 });

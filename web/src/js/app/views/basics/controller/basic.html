@@ -1,4 +1,5 @@
-<div class="container">
+<div class="container" intro-outro='fade'>
+
     <div class="row">
 
         <div class="col-md-12">
@@ -11,10 +12,10 @@
         <div class="col-md-12">
             <p>Views in Kudu are implemented as AMD modules that must return a <span class="fun">Controller</span></p>
 
-            <p><span class="fun">Controllers</span> are plain Javascript objects but must implement an <span class="met">onInit</span> method that returns a 
+            <p><span class="fun">Controllers</span> are plain Javascript objects but must implement an <span class="met">onInit</span> method that returns a
                 <a href='http://ractivejs.org' target='_blank' class='link'>Ractive</a>
                 instance. <span class="ln">Ractive</span> is a library that binds HTML templates to data objects. To get started
-                with Ractive see  <a href='http://docs.ractivejs.org/latest/get-started' target='_blank' class='link'>here</a>. A tutorial on Ractive is 
+                with Ractive see  <a href='http://docs.ractivejs.org/latest/get-started' target='_blank' class='link'>here</a>. A tutorial on Ractive is
                 available <a href='http://learn.ractivejs.org' target='_blank' class='link'>here</a>.
             </p>
             <p>Controllers have an associated HTML template, which are <a href="https://mustache.github.io/" target="_blank" class="link">mustache</a> based.
@@ -39,24 +40,24 @@
 
 	return basicCtrl;
 }); </code></pre>
-            
+
             <p>In <span class="ln">line 3</span>, we use the <span class="var">rvc</span> plugin to load and compile the <em>view.html</em> template. The result of this plugin
                 is a fully compiled Ractive object that can be instantiated using <em>new</em>.
             </p>
             <p>In <span class="ln">line 9</span> we implement the <strong>required</strong> <em>onInit</em> method that must return a Ractive view instance.
             </p>
-            
-            <p>In <span class="ln">line 11</span>, we create a and return a new Ractive view instance from the compiled template from 
+
+            <p>In <span class="ln">line 11</span>, we create a and return a new Ractive view instance from the compiled template from
                 <span class="ln">line 3</span>.
             </p>
-            
+
             <p>That's it, a basic Kudu view! Test it below!
             </p>
-            
+
             <button type="button" class="btn btn-success"  on-click="loadView()">Test view</button> (this will reload the current view!)
-            
+
             <p>Use the menus above to explore other examples and features provided by Kudu.
-                
+
             </p>
 
         </div>

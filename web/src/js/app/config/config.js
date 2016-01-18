@@ -1,8 +1,8 @@
-// 
+//
 // // Place third party dependencies in the lib folder
 //
 // Configure loading modules from the lib directory,
-// except 'app' ones, 
+// except 'app' ones,
 requirejs.config({
 	"baseUrl": "js/lib", // root folder where all our libraries are located
 
@@ -13,7 +13,7 @@ requirejs.config({
 		//"numeral": "numeral",
 		//"bootstrap": '../app/plugins/bootstrap',
 		//'select2': '../app/plugins/select2',
-		"jquery": 'jquery-2.1.4'
+		"jquery": 'jquery-2.1.4',
 				//'ractive': 'http://cdn.ractivejs.org/edge/ractive',
 				//@,'jquery': 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min'
 	},
@@ -63,12 +63,12 @@ requirejs.config({
  };*/
 
 requirejs(["pace"], function (pace) {
-	
+
 	pace.start({
 			//ajax: false, // disabled
 			document: false, // disabled
 			eventLag: false // disabled
-			
+
 	});
 	pace.on("stop", function() {
 		var e = document.querySelector(".pace");

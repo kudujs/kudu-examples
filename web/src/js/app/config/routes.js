@@ -15,11 +15,12 @@ define(function (require) {
 	var validatingForm = require("app/views/forms/validate/validating-form");
 	var ajaxBasics = require("app/views/ajax/basic/basic-ajax");
 	var ajaxTracker = require("app/views/ajax/tracker/ajaxtracker");
-        var ajaxEvents = require("app/views/ajax/events/ajax-events");
-        var compBasics = require("app/views/comp/basic/basic-comp");
-        var compPubSub = require("app/views/comp/pubsub/comp-pubsub");
-        var multiComp = require("app/views/comp/multple/multiple-comp");
-        var partialBasics = require("app/views/partial/basic/basic-partial");
+	var ajaxEvents = require("app/views/ajax/events/ajax-events");
+	var compBasics = require("app/views/comp/basic/basic-comp");
+	var compPubSub = require("app/views/comp/pubsub/comp-pubsub");
+	var multiComp = require("app/views/comp/multple/multiple-comp");
+	var partialBasics = require("app/views/partial/basic/basic-partial");
+	var transitionBasics = require("app/views/transition/basic/basic-transition");
 	var notFound = require("app/views/notfound/notFound");
 
 	function routes() {
@@ -43,16 +44,17 @@ define(function (require) {
 			validatingForm: {path: '/form-validation', ctrl: validatingForm},
 			ajaxBasics: {path: '/ajax-basics', ctrl: ajaxBasics},
 			ajaxTracker: {path: '/ajax-tracker', ctrl: ajaxTracker},
-                        ajaxEvents: {path: '/ajax-events', ctrl: ajaxEvents},
-                        compBasics: {path: '/comp-basics', ctrl: compBasics},
-                        compPubSub: {path: '/comp-pubsub', ctrl: compPubSub},
-                        multiComp: {path: '/comp-multi', ctrl: multiComp},
-                        partialBasics: {path: '/partial-basics', ctrl: partialBasics},
+			ajaxEvents: {path: '/ajax-events', ctrl: ajaxEvents},
+			compBasics: {path: '/comp-basics', ctrl: compBasics},
+			compPubSub: {path: '/comp-pubsub', ctrl: compPubSub},
+			multiComp: {path: '/comp-multi', ctrl: multiComp},
+			partialBasics: {path: '/partial-basics', ctrl: partialBasics},
+			transitionBasics: {path: '/transition-basics', ctrl: transitionBasics},
 			notFound: {path: '*', ctrl: notFound}
 		};
 
 		Ractive.defaults.debug = true;
-		
+
 		return routes;
 
 	}

@@ -1,5 +1,5 @@
 define(function (require) {
-		var $ = require("jquery");
+	var $ = require("jquery");
 	var ractive = require("ractive");
 	require("bootstrap");
 	var prism = require("prism");
@@ -29,7 +29,7 @@ define(function (require) {
 		var path = route.path;
 		path = path.slice(1);
 		var $item = $(".navbar [href='#" + path + "']");
-		$item.closest('li').addClass("active")
+		$item.closest('li').addClass("active");
 
 	}
 });

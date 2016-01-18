@@ -13,7 +13,6 @@
             In this example we show how to subscribe to Kudu lifecycle events. Lifecycle events uses the <span class="var">"lc."</span> prefix,
             as shown below on <span class="ln">line 4</span>.
             <pre><code  class="line-numbers language-js">var kudu = require("kudu");
-var $ = require("jquery");
 
 kudu.on("lc.init", function(options) {
     console.log("view has been initialized", options);

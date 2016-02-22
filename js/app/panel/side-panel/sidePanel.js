@@ -24,8 +24,7 @@ define(function (require) {
 			var path = options.path || getUrlPath();
 			var ext = options.ext || "";
 			panel.set("visible", true);
-			//console.log(sidePanel.id);
-			//"/js/ + path + ext
+
 			panel.set("code", path + "." + ext);
 			panel.set("title", path + "." + ext);
 			prism.fileHighlight();
@@ -37,7 +36,7 @@ define(function (require) {
 
 	function getUrlPath() {
 		var route = kudu.getActiveRoute();
-		var id = route.ctrl.id;
+		var id = kudu.getId(route.ctrl);
 		return "js/" + id;
 	}
 
@@ -48,29 +47,13 @@ define(function (require) {
 			if ($(e.target).is('a')) {
 				panel.set("visible", false);
 
-				//$(".cd-panel-container").css("transition-delay", "0s");
-				//$(".cd-panel-header").css("transition-property", "none");
-				//$(".cd-panel-container").css("transform", "none");
-				//$(".cd-panel-container").css("transition-property", "none");
 				$(".cd-panel").css("transitionProperty", "none");
 				setTimeout(function () {
 					$(".cd-panel").css("transitionProperty", "all");
 				});
-				//$(".cd-panel").css("transitionProperty", "background 0.3s 0s");
-
-				//$(".cd-panel").css("transform", "none");
-
-
-
-				/*
-				 e.preventDefault();
-				 e.stopPropagation();
-				 setTimeout(function () {
-				 $(e.target)[0].click();
-				 }, 600);*/
 			}
 		}
 	}
-	;
+
 	return sidePanel;
 });

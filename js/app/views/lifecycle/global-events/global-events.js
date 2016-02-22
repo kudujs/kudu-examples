@@ -97,7 +97,7 @@ define(function (require) {
 	}
 
 	function getPrettyCtrlName(ctrl) {
-		var id = ctrl.id;
+		var id = kudu.getId(ctrl);
 		var namePath = id.split("/").pop();
 		var name = stringUtils.dashToCamel(namePath);
 		name = stringUtils.capitalize(name);

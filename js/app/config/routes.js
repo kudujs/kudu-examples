@@ -32,7 +32,7 @@ define(function (require) {
 		var routes = {
 			home: homeRoute,
 			nav: {path: '/nav', ctrl: nav},
-			basic: {path: '/basic', ctrl: basic},
+			basic: {path: '/basic', moduleId: basic._kudu_id},
 			binding: {path: '/binding', ctrl: binding},
 			events: {path: '/methods', ctrl: methods},
 			globalEvents: {path: '/global-events', ctrl: globalEvents},

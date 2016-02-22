@@ -14,6 +14,9 @@ define(function (require) {
 		function createView() {
 
 			var view = new template({
+				data: {
+					check: true
+				},
 				
 				submit: function () {
 					$('.bs-callout-info').removeClass('hidden');

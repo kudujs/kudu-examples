@@ -14,9 +14,9 @@ define(function (require) {
 	};
 
 	function setId(obj, id) {
-		// Create an ID property which isn't writable or iteratable through for in loops.
-		if (!obj.id) {
-			Object.defineProperty(obj, "id", {
+		// Create an ID property which isn't writable or iteratable through 'for...in' loops.
+		if (!obj._kudu_id) {
+			Object.defineProperty(obj, "_kudu_id", {
 				enumerable: false,
 				writable: false,
 				value: id

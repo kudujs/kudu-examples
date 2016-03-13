@@ -6,6 +6,7 @@
 @import url("home.css");
 @import url("animate.css");
 @import url("pace.css");
+@import url("nav.css");
 
 
 ul,li {
@@ -396,10 +397,10 @@ a:visited {
     color: #e6db74;
 }
 .highlight {
-    color: #009DDB;
+    color: #009688;
 }
 .highlightLetter {
-    color: #009DDB;
+    color: #009688;
 }
 .off-color {
     color: #888;
@@ -553,6 +554,7 @@ code.methodSig {
 .placeholder {
     color: #aaa;
 }
+
 /*
 input {
     border: 1px solid #494949;
@@ -853,11 +855,14 @@ h1 {
     font-size: 1.3em;
 }
 
+.required {
+    color: #f44336;
+    }
 
 .parsley-errors-list {
     color: #ee5f5b;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .parsley-errors-list {
@@ -865,7 +870,7 @@ h1 {
 }
 
 
-.well {
+body .container .well {
     background-color: #303030;
     border: 0px solid transparent;
     border-radius: 0px;
@@ -905,3 +910,12 @@ span.animated {
     background:#c9302c;
     padding: 10px;
 }
+.nav li a {
+    font-size: 15px;
+}
+
+/*
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 100px #303030 inset !important;
+    -webkit-text-fill-color: #eee;
+}*/

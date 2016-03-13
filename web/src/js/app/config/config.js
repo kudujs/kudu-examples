@@ -23,6 +23,13 @@ requirejs.config({
 		}
 	},
 	"shim": {
+		 ripples : {
+            deps: ["jquery"]
+        },
+        material: {
+            deps: ["bootstrap", 'ripples']
+        },
+		
 		"bootstrap": {
 			"deps": ['jquery']
 		},

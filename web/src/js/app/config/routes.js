@@ -56,8 +56,6 @@ define(function (require) {
 			notFound: {path: '*', ctrl: notFound}
 		};
 
-		Ractive.defaults.debug = true;
-
 		return routes;
 
 	}

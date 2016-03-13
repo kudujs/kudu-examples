@@ -26,23 +26,23 @@
         <div class="col-md-12">
 
             <div class="well">
-                <form name="form" >
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Name</label>
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Name" required="">
+                <form name="form" novalidate>
+                    <div class="form-group label-floating">
+                        <label class="control-label" for="exampleInputEmail1" >Name <span class="required">*</span></label>
+                        <input type="text" name="name" class="form-control" placeholder="Name" id="name"  required="">
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required="" >
+                    <div class="form-group label-floating">
+                        <label class="control-label" for="exampleInputEmail1">Email address</label>
+                        <input type="text" name="email" class="form-control" id="exampleInputEmail1" data-parsley-type="email" placeholder="Email">
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password" required="">
+                    <div class="form-group label-floating">
+                        <label class="control-label" for="password" >Password <span class="required">*</span></label>
+                        <input type="password" placeholder="Password" class="form-control" id="password"  required="">
                     </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm password</label>
-                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" data-parsley-equalto="#password"
-                               data-parsley-equalto-message="Password confirmation must match the password." required="required">
+                    <div class="form-group label-floating">
+                        <label class="control-label" for="confirmPassword">Confirm password <span class="required">*</span></label>
+                        <input type="password" class="form-control" id="confirmPassword" data-parsley-equalto="#password" placeholder="Confirm Password" 
+                               data-parsley-equalto-message="Password confirmation must match the password." required="">
                     </div>
 
                     <div class="checkbox">

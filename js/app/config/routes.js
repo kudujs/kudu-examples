@@ -1,5 +1,6 @@
 define(function (require) {
 
+	var kudu = require("kudu");
 	var Ractive = require("ractive");
 	var home = require("app/views/home/home");
 	var basic = require("app/views/basics/controller/basic");
@@ -11,6 +12,7 @@ define(function (require) {
 	var nav = require("app/views/nav/nav");
 	var navTarget = require("app/views/nav/nav-target");
 	var navTargetParams = require("app/views/nav/nav-target-params");
+	var redirect = require("app/views/nav/redirect/redirect");
 	var basicForm = require("app/views/forms/basic/basic-form");
 	var validatingForm = require("app/views/forms/validate/validating-form");
 	var ajaxBasics = require("app/views/ajax/basic/basic-ajax");
@@ -32,7 +34,7 @@ define(function (require) {
 		var routes = {
 			home: homeRoute,
 			nav: {path: '/nav', ctrl: nav},
-			basic: {path: '/basic', moduleId: basic._kudu_id},
+			basic: {path: '/basic', ctrl: basic},
 			binding: {path: '/binding', ctrl: binding},
 			events: {path: '/methods', ctrl: methods},
 			globalEvents: {path: '/global-events', ctrl: globalEvents},
@@ -50,10 +52,9 @@ define(function (require) {
 			multiComp: {path: '/comp-multi', ctrl: multiComp},
 			partialBasics: {path: '/partial-basics', ctrl: partialBasics},
 			transitionBasics: {path: '/transition-basics', ctrl: transitionBasics},
+			redirect: {path: '/redirect', ctrl: redirect},
 			notFound: {path: '*', ctrl: notFound}
 		};
-
-		Ractive.defaults.debug = true;
 
 		return routes;
 

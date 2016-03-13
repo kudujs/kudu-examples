@@ -1,81 +1,118 @@
-define(function (require) {
-    var $ = require("jquery");
-    var kudu = require("kudu");
-    var template = require("rvc!./ajax-events");
+define( function ( require ) {
+	var $ = require( "jquery" );
+	var kudu = require( "kudu" );
+	var template = require( "rvc!./ajax-events" );
 
-    function ajaxEvents() {
+	function ajaxEvents() {
 
-        var that = {};
+		var that = { };
 
-        that.onInit = function (options) {
+		that.onInit = function ( options ) {
 
-            var promise = new Promise(function (resolve, reject) {
+			unregisterEvents();
+			registerEvents();
 
-                // We load the json data through an Ajax request
-                var xhr = $.getJSON("data/hello.json?delay=2000");
+			var promise = new Promise( function ( resolve, reject ) {
 
-                registerToEvents();
-
-                options.ajaxTracker.add(xhr);
+				// We load the json data through an Ajax request
+				var xhr = $.getJSON( "data/hello.json?delay=2000" );
 
 
-                xhr.then(function (data) {
+				options.ajaxTracker.add( xhr );
 
-                    // Here we have the data and pass it to the createView method to render
-                    var view = createView(data);
+				xhr.then( function ( data ) {
 
-                    // Everything is good, so we resolve the promise, passing in the view
-                    resolve(view);
-                }, function () {
-                    // Oops, something went wrong, so we reject the promise
-                    reject("Could not load data for AjaxEvents");
-                });
-            });
+					// Here we have the data and pass it to the createView method to render
+					var view = createView( data );
 
-            return promise;
-        };
+					// Everything is good, so we resolve the promise, passing in the view
+					resolve( view );
+					
+					setTimeout(function() {
+						unregisterEvents();
+					});
+					
+				}, function () {
+					// Oops, something went wrong, so we reject the promise
+					reject( "Could not load data for AjaxEvents" );
+					
+					setTimeout(function() {
+						unregisterEvents();
+					});
+				} );
+			} );
 
-        function createView(data) {
+			return promise;
+		};
 
-            var view = new template();
+		function createView( data ) {
 
-            // Convert the JSON data objectr to a string representation
-            var json = JSON.stringify(data);
+			var view = new template();
 
-            // Set the json data object to render
-            view.set("response", json);
+			// Convert the JSON data objectr to a string representation
+			var json = JSON.stringify( data );
 
-            view.reload = function () {
-                kudu.go({ctrl: ajaxEvents});
-            };
-            return view;
-        }
+			// Set the json data object to render
+			view.set( "response", json );
 
-        function registerToEvents() {
-            kudu.on("global.ajax.start", function (options) {
-                console.log("global.ajax.start", options);
-            });
-            kudu.on("ajax.start", function (options) {
-                console.log("ajax.start", options);
-            });
-            kudu.on("ajax.success", function (options) {
-                console.log("ajax.success", options);
-            });
-            kudu.on("ajax.error", function (options) {
-                console.log("ajax.error", options);
-            });
-            kudu.on("ajax.complete", function (options) {
-                console.log("ajax.complete", options);
-            });
-            kudu.on("ajax.stop", function (options) {
-                console.log("ajax.stop", options);
-            });
-            kudu.on("global.ajax.stop", function (options) {
-                console.log("global.ajax.stop", options);
-            });
-        }
+			view.reload = function () {
+				kudu.go( { ctrl: ajaxEvents } );
+			};
+			return view;
+		}
 
-        return that;
-    }
-    return ajaxEvents;
-});
+		function unregisterEvents() {
+			console.log( "unregistered" );
+			kudu.off( "global.ajax.start", globalAjaxStart );
+			kudu.off( "ajax.start", ajaxStart );
+			kudu.off( "ajax.success", ajaxSuccess );
+			kudu.off( "ajax.error", ajaxError );
+			kudu.off( "ajax.complete", ajaxComplete );
+			kudu.off( "ajax.stop", ajaxStop );
+			kudu.off( "global.ajax.stop", globalAjaxStop );
+		}
+
+		function registerEvents() {
+			console.log( "registered" );
+			kudu.on( "global.ajax.start", globalAjaxStart );
+			kudu.on( "ajax.start", ajaxStart );
+			kudu.on( "ajax.success", ajaxSuccess );
+			kudu.on( "ajax.error", ajaxError );
+			kudu.on( "ajax.complete", ajaxComplete );
+			kudu.on( "ajax.stop", ajaxStop );
+			kudu.on( "global.ajax.stop", globalAjaxStop );
+		}
+
+		return that;
+	}
+
+	function globalAjaxStop( options ) {
+		console.log( "global.ajax.stop", options );
+	}
+
+	function ajaxStop( options ) {
+		console.log( "ajax.stop", options );
+	}
+
+	function ajaxComplete( options ) {
+		console.log( "ajax.complete", options );
+	}
+
+	function ajaxError( options ) {
+		console.log( "ajax.error", options );
+	}
+
+	function ajaxSuccess( options ) {
+		console.log( "ajax.success", options );
+	}
+
+	function ajaxStart( options ) {
+		console.log( "ajax.start", options );
+	}
+
+	function globalAjaxStart( options ) {
+		console.log( "global.ajax.start", options );
+	}
+
+	return ajaxEvents;
+} );

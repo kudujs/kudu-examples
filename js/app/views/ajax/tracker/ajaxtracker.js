@@ -29,28 +29,10 @@ define(function (require) {
 
 		function fetchData(ajaxTracker, view) {
 			// We start the Ajax request
-			//var xhr = $.getJSON();
-			//var xhr = createXhr("data/hello.json?delay=2000");
-			var deferred = $.Deferred();
-			var deferred2 = $.Deferred();
-			deferred.reject(new Error("MOO"));
-			deferred2.resolve("pok	");
-			// We add the xhr to the AjaxTracker
-			var promise = deferred.promise();
-			var promise2 = deferred2.promise();
-			
-			promise.abort = function () {
-				deferred.reject("moo aborted");
-			};
-			
-			promise2.abort = function () {
-				deferred2.reject("pok aborted");
-			};
-			
-			ajaxTracker.add(promise, {"a": 2});
-			ajaxTracker.add(promise2, {"a": 3});
+			var xhr = createXhr("data/hello.json?delay=2000");
 
-			return promise;
+			// We add the xhr to the AjaxTracker
+			ajaxTracker.add(xhr);
 
 			xhr.onload = function (arg) {
 				if (xhr.status >= 200 && xhr.status < 400) {
